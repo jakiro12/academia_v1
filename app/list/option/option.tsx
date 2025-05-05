@@ -11,7 +11,7 @@ const OptionSelected=()=>{
       const context = useContext(StudentsContext);
       if (!context) throw new Error("StudentsContext no está disponible");
       
-      const { studentsType, setStudentInformation } = context;
+      const { studentsType, setStudentInformation, setAuxIndex } = context;
 
       const findStudentsDataType=async()=>{
         setLoading(true)
@@ -35,6 +35,7 @@ const OptionSelected=()=>{
       },[])
       const handleStudentInformation=(dataIndex:any)=>{
         setStudentInformation(dataStudents[dataIndex])
+        setAuxIndex(dataIndex)
         router.push('/list/option/student/student')
       }
     return(

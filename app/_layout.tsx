@@ -9,12 +9,15 @@ interface StudentsContextType {
   setStudentsType: React.Dispatch<React.SetStateAction<string>>;
   studentInformation: StudentData;
   setStudentInformation: React.Dispatch<React.SetStateAction<StudentData>>;
+  auxIndex:number | null;
+  setAuxIndex:React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 export const StudentsContext=React.createContext<StudentsContextType | undefined>(undefined)
 
 export default function RootLayout() {
 const [studentsType,setStudentsType]=useState<string>('primario')
+const [auxIndex,setAuxIndex]=useState<number | null>(null)
 const [studentInformation, setStudentInformation] = useState<StudentData>({
   nombre: '',
   deuda: '',
@@ -41,7 +44,7 @@ Contraste fuerte	🔵	#264653	Azul petróleo, aporta profundidad.
 */
 
   return (
-    <StudentsContext.Provider value={{studentsType,setStudentsType,studentInformation,setStudentInformation}}>
+    <StudentsContext.Provider value={{studentsType,setStudentsType,studentInformation,setStudentInformation,auxIndex,setAuxIndex}}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="list/list" options={{ headerShown: false }} />

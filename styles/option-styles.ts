@@ -58,15 +58,16 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         display:'flex',
         flexDirection:'row',
         alignItems:'center',
-        justifyContent:'center',
+        justifyContent:'flex-start',
         columnGap:10,
         backgroundColor:'#25d366',
-        borderRadius:5
+        borderRadius:5,
+        paddingLeft:10
     },
     fontInfo:{
         width:'auto',
         height:'auto',
-        fontWeight:'bold',
+        fontWeight:400,
         fontSize:18
     },
     boxSubjectsContainer:{

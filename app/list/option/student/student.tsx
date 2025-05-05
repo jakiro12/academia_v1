@@ -9,7 +9,7 @@ import ModalCustomActions from "@/components/modal-actions";
 const InformationStudent = () => {
     const context = useContext(StudentsContext);
     const [checkDates,setCheckDates]=useState<boolean>(false)
-    const [expandedIndex, setExpandedIndex] = useState<number | null>(null); // índice de materia expandida
+    const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
     const [modalType,setModalType]=useState<string>('see')
     if (!context) {
         throw new Error("MyComponent debe usarse dentro de StudentsProvider");
