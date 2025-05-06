@@ -1,7 +1,7 @@
-import { Linking, Modal, Text, TouchableOpacity, View } from "react-native"
+import { Linking, Text, TouchableOpacity, View } from "react-native"
 import styles from '../../../../styles/option-styles'
 import { StudentsContext } from "@/app/_layout"
-import { useContext, useState } from "react"
+import { useContext,  useState } from "react"
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { AntDesign } from "@expo/vector-icons";
 import ModalCustomActions from "@/components/modal-actions";
@@ -11,6 +11,7 @@ const InformationStudent = () => {
     const [checkDates,setCheckDates]=useState<boolean>(false)
     const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
     const [modalType,setModalType]=useState<string>('see')
+
     if (!context) {
         throw new Error("MyComponent debe usarse dentro de StudentsProvider");
     }
@@ -29,7 +30,7 @@ const InformationStudent = () => {
         setCheckDates(true)
         setModalType(action)
     }
-
+    
     return (
         <View style={styles.container}>
             <View style={styles.infoCardStudent}>

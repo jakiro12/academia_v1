@@ -50,7 +50,7 @@ const OptionSelected=()=>{
                       key={index}
                       onPress={()=>handleStudentInformation(index)}
                     >
-                        <Text style={{width:'auto',height:'auto',fontWeight:'bold',fontSize:18}}>{item.nombre}</Text>
+                        <Text style={{width:'auto',height:'auto',fontWeight:400,fontSize:18}}>{item.nombre}</Text>
                     </TouchableOpacity>
                 )
             }

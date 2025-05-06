@@ -1,7 +1,7 @@
-import { Modal, View, Text, TouchableOpacity, TextInput, ScrollView } from "react-native"
+import { Modal, View, Text, TouchableOpacity, TextInput, ScrollView, Alert } from "react-native"
 import styles from '../styles/option-styles'
-import { useContext, useState } from "react"
-import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore"
+import { useContext,  useState } from "react"
+import {  doc, getDoc, updateDoc } from "firebase/firestore"
 import { firebaseconn } from "@/firebaseconn/conn"
 import { StudentsContext } from "@/app/_layout"
 interface ModalTypes{
@@ -16,10 +16,11 @@ const ModalCustomActions:React.FC<ModalTypes>=({checkDates,onCloseModal,modalTyp
         dia:'',
         hora:''
     })
+
     const context = useContext(StudentsContext);
           if (!context) throw new Error("StudentsContext no está disponible");
           
-          const {auxIndex} = context;
+          const {auxIndex, studentsType} = context;
     
     const handleDate = (field: string, value: string) => {
         setAddDate((prevState) => ({
@@ -28,28 +29,21 @@ const ModalCustomActions:React.FC<ModalTypes>=({checkDates,onCloseModal,modalTyp
         }));
     };
     const addStudentData = async () => {
+        if(addDate.dia === '' || addDate.hora === '') return Alert.alert('debes completar los campos')
         try {
-            // Referencia al documento de la escuela (usando el nombre de la colección y documento)
-            const docRef = doc(firebaseconn, "escuela", "primario");
+            const docRef = doc(firebaseconn, "escuela", studentsType);
 
-            // Obtenemos el documento para acceder al array de alumnos
             const docSnap = await getDoc(docRef);
             
             if (docSnap.exists()) {
                 const data = docSnap.data();
                 const alumnos = data?.alumnos || [];
-
-                // Encontramos el índice del alumno por su nombre
-
                 if (auxIndex !== null) {
-                    // El alumno fue encontrado, agregamos el nuevo turno a su agenda
                     const updatedAgenda = alumnos[auxIndex].asistencia.agenda;
                     updatedAgenda.push({
                         dia: addDate.dia,
                         hora: addDate.hora
                     });
-
-                    // Actualizamos el array de alumnos en Firestore
                     await updateDoc(docRef, {
                         alumnos: alumnos.map((student: any, index: number) => 
                             index === auxIndex
@@ -57,9 +51,8 @@ const ModalCustomActions:React.FC<ModalTypes>=({checkDates,onCloseModal,modalTyp
                                 : student
                         )
                     });
-
                     console.log("Agenda agregada con éxito.");
-                    onCloseModal(false); // Cerramos el modal después de agregar la agenda
+                    onCloseModal(false);
                 } else {
                     console.error("Alumno no encontrado.");
                 }
@@ -70,6 +63,7 @@ const ModalCustomActions:React.FC<ModalTypes>=({checkDates,onCloseModal,modalTyp
             console.error("Error al agregar la agenda:", error);
         }
     };
+   
     return(
         <Modal
             visible={checkDates}
@@ -80,13 +74,15 @@ const ModalCustomActions:React.FC<ModalTypes>=({checkDates,onCloseModal,modalTyp
                 <View style={[styles.infoCardStudent,{alignItems:'center'}]}>
                 {modalType === 'see' ?
                 <>
-                <Text>
+                <Text style={{width:'auto',fontSize:18,fontWeight:400,textDecorationLine:'underline'}}>
                     Historial de asistencias
                 </Text>
                 <ScrollView 
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={{width:200,display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
-                {data.map((e,i)=><Text key={i}>{e}</Text>)}
+                {data.map((e,i)=><Text 
+                                    key={i}
+                                    style={{fontSize:16}}>{e}</Text>)}
                 </ScrollView>
                 <TouchableOpacity
                     style={{width:40,height:40,borderRadius:20,backgroundColor:'#FAF3E0',display:'flex',justifyContent:'center',alignItems:'center'}}
@@ -97,7 +93,7 @@ const ModalCustomActions:React.FC<ModalTypes>=({checkDates,onCloseModal,modalTyp
                 </>
                 :
                 <>
-                <Text>
+                <Text style={{width:'auto',fontSize:18,fontWeight:400,textDecorationLine:'underline'}}>
                     Agendar turno
                 </Text>
                 <TextInput
@@ -113,15 +109,15 @@ const ModalCustomActions:React.FC<ModalTypes>=({checkDates,onCloseModal,modalTyp
                 <View style={{width:'80%',height:60,display:'flex',justifyContent:'space-around',alignItems:'center',flexDirection:'row'}}>
                 <TouchableOpacity
                     onPress={addStudentData}
-                    style={{width:'auto',height:'auto',borderColor:'#000000',borderWidth:1,padding:8,borderRadius:5}}
+                    style={{width:'auto',height:'auto',backgroundColor:'#FAF3E0',padding:8,borderRadius:5}}
                 >
-                    <Text>Agregar</Text>
+                    <Text style={{fontSize:16}}>Agregar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={{width:'auto',height:'auto',borderColor:'#000000',borderWidth:1,padding:8,borderRadius:5}}
+                    style={{width:'auto',height:'auto',backgroundColor:'#FAF3E0',padding:8,borderRadius:5}}
                     onPress={()=>onCloseModal(false)}
                 >
-                    <Text>Cancelar</Text>
+                    <Text style={{fontSize:16}}>Cancelar</Text>
                 </TouchableOpacity>     
                 </View>
                 </>
