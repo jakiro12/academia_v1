@@ -1,6 +1,5 @@
 import { StudentData } from '../../academia/constants/stateTypes';
 import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
 import React, { useState } from 'react';
 import 'react-native-reanimated';
 

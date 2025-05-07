@@ -5,3 +5,4 @@ export const shortFormatDate = new Intl.DateTimeFormat('es-ES', {
   }).format(new Date());
 
 export  const currentDay = new Intl.DateTimeFormat('es-ES', { weekday: 'long' }).format(new Date());
+

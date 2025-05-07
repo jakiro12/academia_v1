@@ -126,7 +126,10 @@ const StudentsToday=()=>{
               </>
             )}
           </ScrollView>
-         <TodayStudentsActions verifyStudent={verifyStudent} studentSelected={studentSelected} setVerifyStudent={setVerifyStudent}/>
+         <TodayStudentsActions 
+            verifyStudent={verifyStudent} 
+            studentSelected={studentSelected} 
+            setVerifyStudent={setVerifyStudent}/>
         </View>
       );
 }
