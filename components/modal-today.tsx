@@ -15,16 +15,15 @@ interface TodayStudentsDataType{
 
 const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,studentSelected,setVerifyStudent })=>{
   const [attended,setAttended]=useState<boolean>(false)
+  const [amount,setAmount]=useState<string>('')
   const context = useContext(StudentsContext);
   
   if (!context) throw new Error("StudentsContext no está disponible");    
   const { studentsType, auxIndex } = context;
    const addAttended = async () => {
           try {
-              const docRef = doc(firebaseconn, "escuela", studentsType);
-  
-              const docSnap = await getDoc(docRef);
-              
+              const docRef = doc(firebaseconn, "escuela", studentsType);  
+              const docSnap = await getDoc(docRef);              
               if (docSnap.exists()) {
                   const data = docSnap.data();
                   const alumnos = data?.alumnos || [];
@@ -49,6 +48,16 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
               console.error("Error al agregar la fecha:", error);
           }
       };
+    const handleSendStudentData=()=>{
+      if(attended  && amount.length > 0){
+        console.log('enviar fecha y monto')
+        return //cortar flujo
+      }else if(attended === false && amount.length > 0){
+        console.log('enviar solo el dinero')
+      }else{
+        console.log('no envia dinero y no asistio')
+      }
+    }
     return(
         <Modal
             visible={verifyStudent}
@@ -79,7 +88,9 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
                   <View style={{width:'100%',height:'auto',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',columnGap:20}}>
                     <Text>Monto pagado:</Text>
                     <TextInput 
-                    keyboardType="number-pad"
+                      value={amount}
+                      onChangeText={(text)=>setAmount(text)}
+                      keyboardType="number-pad"
                       placeholder="Monto a ingresar"
                       style={{width:'40%',height:40,borderRadius:5,backgroundColor:'#ffffff'}}
                     />
@@ -87,7 +98,7 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
                   <View style={{width:'100%',height:'15%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
                   <TouchableOpacity
                     style={{backgroundColor:'#A8D5BA',display:'flex',justifyContent:'center',alignItems:'center',padding:8,borderRadius:5}}
-                      onPress={addAttended}
+                      onPress={handleSendStudentData}
                     >
                     <Text style={{width:'auto',height:'auto',color:'#ffffff',fontWeight:'bold'}}>Enviar</Text>
                     </TouchableOpacity>
