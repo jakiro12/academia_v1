@@ -13,10 +13,9 @@ export default function HomeScreen() {
     setStudentsType(type)
     router.push('/list/list')
   }
-  return (
-    <>
-    <StatusBar  backgroundColor="#ffffff" />
+  return (    
       <View style={styles.container}>
+        <StatusBar backgroundColor="#FDD48A"/>            
         <TouchableOpacity style={styles.boxOptions}
             onPress={()=>handleRouteState('primario')}
         > 
@@ -39,7 +38,6 @@ export default function HomeScreen() {
             </Text>          
         </TouchableOpacity>
       </View>
-  </>
   );
 }
 

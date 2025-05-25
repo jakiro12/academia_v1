@@ -5,15 +5,16 @@ import { StudentsContext } from "../_layout";
 import { useContext } from "react";
 import { arrayUnion, updateDoc, doc } from "firebase/firestore";
 import { firebaseconn } from "@/firebaseconn/conn";
+import { StatusBar } from "react-native";
 
 
-const FullListStudents =()=>{   
-    const {studentsType}=useContext(StudentsContext)    
+const FullListStudents =()=>{
+    const context = useContext(StudentsContext);
+    if (!context) throw new Error("StudentsContext no está disponible");       
+    const {studentsType}=context
     const agregarAlumnos = async () => {
         const nuevosAlumnos = [
-          { nombre: "Alumno 4",
-            deuda: "1000",
-            total_pagado:"10000",
+          { nombre: "Alumno 4",           
             establecimiento:"Esculea X año x",
             asistencia:{
                 carga_horaria:"2",
@@ -47,6 +48,7 @@ const FullListStudents =()=>{
       }; 
     return(
         <View style={styles.container}>
+            <StatusBar backgroundColor="#FDD48A"/>            
             <TouchableOpacity style={styles.boxOptions}
                 onPress={()=>router.push('/list/option/option')}
             >

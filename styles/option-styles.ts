@@ -13,6 +13,9 @@ interface OptionScreen{
     boxSubjectsContainer:ViewStyle
     infoCardStudentAssit:ViewStyle
     btnTurns:ViewStyle
+    paymentsBox:ViewStyle
+    paymentsBtnsContainer:ViewStyle
+    btnPaymentOption:ViewStyle
 }
 const { width } = Dimensions.get("window");
 const optionStyles :  OptionScreen = StyleSheet.create({
@@ -26,23 +29,25 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         backgroundColor:'#FAF3E0',
     },
     containerScroll:{
-        width:width * 0.9,
+        width:width,
         rowGap:15,
         display:'flex',
         flexDirection:'column',
         justifyContent:'flex-start',
         alignItems:'center',
-        paddingTop:10,            
+        paddingTop:10, 
+        paddingBottom:10,        
     },
     boxOptions:{
-        width:'100%',
+        width:'90%',
         height:120,        
         borderRadius:15,
         marginTop:20,
         backgroundColor:'#F4A261',
         display:'flex',
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        boxShadow:'2px 2px 5px 0pxrgba(0, 0, 0, 0.34)',
     },
     infoCardStudent:{
         width:'90%',
@@ -50,7 +55,8 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         backgroundColor:'#F4A261',
         borderRadius:15,
         padding:10,
-        rowGap:10
+        rowGap:10,
+        boxShadow:'2px 2px 5px 0pxrgba(0, 0, 0, 0.34)',
     },
     wspBtn:{
         width:120,
@@ -110,7 +116,39 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         justifyContent:'space-between'
     },
     btnTurns:{
-        marginTop: 10,backgroundColor:'#264653',width:100,borderRadius:5,display:'flex',justifyContent:'center',alignItems:'center',height:35 
+        marginTop: 10,
+        backgroundColor:'#264653',
+        width:100,
+        borderRadius:5,
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',height:35 
+    },
+    paymentsBox:{
+        width:'100%',
+        height:'15%',
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        justifyContent:'space-between'
+    },
+    paymentsBtnsContainer:{
+        width:'100%',
+        height:50,
+        display:'flex',
+        justifyContent:'space-between',
+        alignItems:'center',
+        flexDirection:'row'
+    },
+    btnPaymentOption:{
+        width:'auto',
+        height:'auto',
+        backgroundColor:'#FAF3E0',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        padding:6,
+        borderRadius:4
     }
 })
 

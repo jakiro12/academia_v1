@@ -14,7 +14,7 @@ interface TodayStudentsDataType{
 }
 
 const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,studentSelected,setVerifyStudent })=>{
-  const [attended,setAttended]=useState<boolean>(false)
+  const [attended,setAttended]=useState<string>('')
   const [amount,setAmount]=useState<string>('')
   const context = useContext(StudentsContext);
   
@@ -52,7 +52,7 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
       if(attended  && amount.length > 0){
         console.log('enviar fecha y monto')
         return //cortar flujo
-      }else if(attended === false && amount.length > 0){
+      }else if(attended.length > 0 && amount.length > 0){
         console.log('enviar solo el dinero')
       }else{
         console.log('no envia dinero y no asistio')
@@ -70,23 +70,31 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
                     <>
                     <Text>{studentSelected.nombre}</Text>                  
                   <Text>Carga horaria: {studentSelected.asistencia.carga_horaria}Hrs</Text>
-                  <View style={{width:'100%',height:'10%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',paddingRight:40}}>
-                    <Text>Asistio hoy:</Text>
+                  <View style={styles.paymentsBox}>
+                    <Text>Tipo de pago:</Text>
+                    <View style={styles.paymentsBtnsContainer}>
                     <TouchableOpacity
-                      onPress={()=>setAttended(true)}
-                      style={{width:40,height:40,borderRadius:20,backgroundColor:'#FAF3E0',display:'flex',justifyContent:'center',alignItems:'center',opacity:attended === true ? 1 : 0.5 }}
+                      onPress={()=>setAttended('diario')}
+                      style={styles.btnPaymentOption}
                     >                      
-                      <Text>Si</Text>
+                      <Text>Diario</Text>
+                    </TouchableOpacity>
+                     <TouchableOpacity
+                      onPress={()=>setAttended('diario')}
+                      style={styles.btnPaymentOption}
+                    >                      
+                      <Text>Deuda</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                      onPress={()=>setAttended(false)}
-                      style={{width:40,height:40,borderRadius:20,backgroundColor:'#FAF3E0',display:'flex',justifyContent:'center',alignItems:'center',opacity:attended === false ? 1 : 0.5 }}
+                      onPress={()=>setAttended('mensual')}
+                      style={styles.btnPaymentOption}
                     >
-                      <Text>No</Text>
+                      <Text>Mensual</Text>
                     </TouchableOpacity>
+                    </View>
                   </View>
                   <View style={{width:'100%',height:'auto',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',columnGap:20}}>
-                    <Text>Monto pagado:</Text>
+                    <Text>Monto a pagar:</Text>
                     <TextInput 
                       value={amount}
                       onChangeText={(text)=>setAmount(text)}

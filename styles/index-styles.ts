@@ -24,7 +24,8 @@ const loginStyles : InitScreen = StyleSheet.create({
         backgroundColor:'#F4A261',
         display:'flex',
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        boxShadow:'2px 2px 5px 0pxrgba(0, 0, 0, 0.34)',
     },
     textDescription:{
         width:'auto',

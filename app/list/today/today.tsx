@@ -1,4 +1,4 @@
-import { ActivityIndicator, Modal, ScrollView, TextInput, TouchableOpacity, View, Text } from "react-native"
+import { ActivityIndicator,  ScrollView,  TouchableOpacity, View, Text, StatusBar } from "react-native"
 import styles from '../../../styles/option-styles'
 import { StudentsContext } from "@/app/_layout"
 import { useContext, useEffect, useState } from "react"
@@ -102,6 +102,7 @@ const StudentsToday=()=>{
       };
       return (
         <View style={styles.container}>
+          <StatusBar backgroundColor="#FDD48A"/>
           <ScrollView contentContainerStyle={styles.containerScroll} showsVerticalScrollIndicator={false}>
             {loading ? (
               <ActivityIndicator size={40} />

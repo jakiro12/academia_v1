@@ -18,7 +18,6 @@ const InformationStudent = () => {
 
     const { studentInformation } = context;
    
-
     const handleExternalLinks = (phone: string) => {
         Linking.openURL(`https://wa.me/${phone}`);
     };
@@ -48,7 +47,6 @@ const InformationStudent = () => {
                 ))}
 
                 <Text style={styles.fontInfo}>{studentInformation.establecimiento}</Text>
-                <Text>Saldo actual:{studentInformation.total_pagado}</Text>
                 <Text style={styles.schoolSubjects}>Materias:</Text>
                 <View style={styles.boxSubjectsContainer}>
                 {studentInformation.materias.map((materia, index) => (

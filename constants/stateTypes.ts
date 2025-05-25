@@ -14,9 +14,7 @@ type Assit = {
 
 export interface StudentData{
     nombre:string;
-    deuda:string;
     establecimiento:string;
-    total_pagado:string;
     asistencia:Assit;
     telefonos:{
         nombre:string;
@@ -26,4 +24,9 @@ export interface StudentData{
         nombre:string;
         temas:string[]
     }[];
+    pagos:{
+        fecha:string;
+        tipo:string;
+        valor:string;
+    }[]
 }
