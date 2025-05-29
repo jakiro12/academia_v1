@@ -1,4 +1,4 @@
-import { View, Modal, TouchableOpacity, Text, TextInput } from "react-native"
+import { View, Modal, TouchableOpacity, Text, TextInput, ActivityIndicator } from "react-native"
 import styles from '../styles/option-styles'
 import { StudentData } from "@/constants/stateTypes"
 import { useContext, useState } from "react"
@@ -14,8 +14,9 @@ interface TodayStudentsDataType{
 }
 
 const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,studentSelected,setVerifyStudent })=>{
-  const [attended,setAttended]=useState<string>('')
+  const [attended,setAttended]=useState<string | null>(null)
   const [amount,setAmount]=useState<string>('')
+  const [loading,setLoading]=useState<boolean>(false)
   const context = useContext(StudentsContext);
   
   if (!context) throw new Error("StudentsContext no está disponible");    
@@ -48,16 +49,59 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
               console.error("Error al agregar la fecha:", error);
           }
       };
-    const handleSendStudentData=()=>{
-      if(attended  && amount.length > 0){
-        console.log('enviar fecha y monto')
-        return //cortar flujo
-      }else if(attended.length > 0 && amount.length > 0){
-        console.log('enviar solo el dinero')
-      }else{
-        console.log('no envia dinero y no asistio')
+    const handleSendStudentData = async () => {
+    if (attended !== null && amount.length > 0 && studentSelected) {
+    const newPayment = {
+      tipo: attended,
+      valor: amount,
+      fecha: shortFormatDate,
+    };
+    setLoading(true)
+    try {
+      const docRef = doc(firebaseconn, "escuela", studentsType);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        const alumnos = data?.alumnos || [];
+
+        if (auxIndex !== null && alumnos[auxIndex]) {
+          const pagosPrevios = alumnos[auxIndex].pagos || [];
+
+          // Agrega el nuevo pago al array existente
+          pagosPrevios.push(newPayment);
+
+          // Actualiza en Firestore
+          await updateDoc(docRef, {
+            alumnos: alumnos.map((student: any, index: number) =>
+              index === auxIndex
+                ? { ...student, pagos: pagosPrevios }
+                : student
+            ),
+          });
+          addAttended()
+          console.log("Pago registrado con éxito.");
+          
+        } else {
+          console.error("Índice de alumno inválido.");
+        }
+      } else {
+        console.error("Documento de alumnos no encontrado.");
       }
+    } catch (error) {
+      console.error("Error al guardar el pago:", error);
+    }finally{
+      setLoading(false)
+      setVerifyStudent(false);
+      setAmount('');
+      setAttended(null);
     }
+
+  } else {
+    console.log("Debe seleccionar un tipo de pago y un monto.");
+  }
+};
+
     return(
         <Modal
             visible={verifyStudent}
@@ -68,33 +112,39 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
                 <View style={styles.infoCardStudentAssit}>
                   {studentSelected &&(
                     <>
-                    <Text>{studentSelected.nombre}</Text>                  
-                  <Text>Carga horaria: {studentSelected.asistencia.carga_horaria}Hrs</Text>
+                    <Text style={{fontSize:20}}>{studentSelected.nombre}</Text>                  
+                  <Text style={{fontSize:20}}>Carga horaria: {studentSelected.asistencia.carga_horaria}Hrs</Text>
                   <View style={styles.paymentsBox}>
-                    <Text>Tipo de pago:</Text>
+                    <Text style={{fontSize:20}}>Tipo de pago:</Text>
                     <View style={styles.paymentsBtnsContainer}>
                     <TouchableOpacity
-                      onPress={()=>setAttended('diario')}
-                      style={styles.btnPaymentOption}
+                      onPress={()=>setAttended('clase')}
+                       style={[styles.btnPaymentOption,{opacity: attended === 'clase' ? 1 : 0.6}]}
                     >                      
-                      <Text>Diario</Text>
-                    </TouchableOpacity>
-                     <TouchableOpacity
-                      onPress={()=>setAttended('diario')}
-                      style={styles.btnPaymentOption}
-                    >                      
-                      <Text>Deuda</Text>
-                    </TouchableOpacity>
+                      <Text style={{fontSize:20}}>Clase</Text>
+                    </TouchableOpacity>                     
                     <TouchableOpacity
                       onPress={()=>setAttended('mensual')}
-                      style={styles.btnPaymentOption}
+                      style={[styles.btnPaymentOption,{opacity: attended === 'mensual' ? 1 : 0.6}]}
                     >
-                      <Text>Mensual</Text>
+                      <Text style={{fontSize:20}}>Mensual</Text>
+                    </TouchableOpacity>
+                     <TouchableOpacity
+                      onPress={()=>setAttended('fijo')}
+                       style={[styles.btnPaymentOption,{opacity: attended === 'fijo' ? 1 : 0.6}]}
+                    >
+                      <Text style={{fontSize:20}}>Fijo</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={()=>setAttended('deuda')}
+                      style={[styles.btnPaymentOption,{opacity: attended === 'deuda' ? 1 : 0.6}]}
+                    >                      
+                      <Text style={{fontSize:20}}>Deuda</Text>
                     </TouchableOpacity>
                     </View>
                   </View>
                   <View style={{width:'100%',height:'auto',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',columnGap:20}}>
-                    <Text>Monto a pagar:</Text>
+                    <Text style={{fontSize:20}}>Monto a pagar:</Text>
                     <TextInput 
                       value={amount}
                       onChangeText={(text)=>setAmount(text)}
@@ -104,17 +154,22 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
                     />
                   </View>
                   <View style={{width:'100%',height:'15%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
+                  {
+                    loading ? <ActivityIndicator size={20} color="#ffffff"/>
+                    :
                   <TouchableOpacity
                     style={{backgroundColor:'#A8D5BA',display:'flex',justifyContent:'center',alignItems:'center',padding:8,borderRadius:5}}
                       onPress={handleSendStudentData}
                     >
-                    <Text style={{width:'auto',height:'auto',color:'#ffffff',fontWeight:'bold'}}>Enviar</Text>
-                    </TouchableOpacity>
+                    <Text style={{width:'auto',height:'auto',color:'#ffffff',fontWeight:'bold',fontSize:20}}>Enviar</Text>
+                  </TouchableOpacity>
+                  }
+
                     <TouchableOpacity
                     style={{backgroundColor:'#264653',display:'flex',justifyContent:'center',alignItems:'center',padding:8,borderRadius:5}}
                       onPress={()=>setVerifyStudent(false)}
                     >
-                    <Text style={{width:'auto',height:'auto',color:'#ffffff',fontWeight:'bold'}}>Cancelar</Text>
+                    <Text style={{width:'auto',height:'auto',color:'#ffffff',fontWeight:'bold',fontSize:20}}>Cancelar</Text>
                     </TouchableOpacity>
                   </View>
                     </>
