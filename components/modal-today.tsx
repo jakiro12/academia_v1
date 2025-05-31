@@ -17,11 +17,13 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
   const [attended,setAttended]=useState<string | null>(null)
   const [amount,setAmount]=useState<string>('')
   const [loading,setLoading]=useState<boolean>(false)
+  const [typeAction,setTypeAction]=useState<boolean>(true)
   const context = useContext(StudentsContext);
   
   if (!context) throw new Error("StudentsContext no está disponible");    
   const { studentsType, auxIndex } = context;
    const addAttended = async () => {
+      setLoading(true)
           try {
               const docRef = doc(firebaseconn, "escuela", studentsType);  
               const docSnap = await getDoc(docRef);              
@@ -47,6 +49,8 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
               }
           } catch (error) {
               console.error("Error al agregar la fecha:", error);
+          }finally{
+            setLoading(false)
           }
       };
     const handleSendStudentData = async () => {
@@ -109,11 +113,30 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
             transparent={true}
             >
               <View style={styles.container}>
+               
                 <View style={styles.infoCardStudentAssit}>
-                  {studentSelected &&(
-                    <>
-                    <Text style={{fontSize:20}}>{studentSelected.nombre}</Text>                  
-                  <Text style={{fontSize:20}}>Carga horaria: {studentSelected.asistencia.carga_horaria}Hrs</Text>
+                  <View style={styles.boxBtnTitleAction}>
+                    <TouchableOpacity
+                      style={styles.actionBtns}
+                      onPress={()=>setTypeAction(true)}
+                    >
+                      <Text
+                        style={styles.textModayTodalDescription}
+                      >Pagos</Text>                      
+                    </TouchableOpacity>                  
+                    <TouchableOpacity
+                      style={styles.actionBtns}
+                      onPress={()=>setTypeAction(false)}
+                    >
+                      <Text
+                        style={styles.textModayTodalDescription}
+                      >Asistencia</Text>
+                    </TouchableOpacity>
+                </View>
+                 {typeAction ? 
+                <>
+                <Text style={{fontSize:20}}>{studentSelected?.nombre}</Text>                  
+                  <Text style={{fontSize:20}}>Carga horaria: {studentSelected?.asistencia.carga_horaria}Hrs</Text>
                   <View style={styles.paymentsBox}>
                     <Text style={{fontSize:20}}>Tipo de pago:</Text>
                     <View style={styles.paymentsBtnsContainer}>
@@ -172,8 +195,34 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
                     <Text style={{width:'auto',height:'auto',color:'#ffffff',fontWeight:'bold',fontSize:20}}>Cancelar</Text>
                     </TouchableOpacity>
                   </View>
-                    </>
-                  )}
+                </> 
+                :
+                <View style={styles.assistContainerBox}>
+                  <Text style={styles.textModayTodalDescription}>Asistencia de {studentSelected?.nombre}</Text>
+                  <Text style={styles.textModayTodalDescription}>Fecha actual {shortFormatDate}</Text>
+                   <View style={{width:'100%',height:'15%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
+                  {
+                    loading ? <ActivityIndicator size={20} color="#ffffff"/>
+                    :
+                  <TouchableOpacity
+                    style={{backgroundColor:'#A8D5BA',display:'flex',justifyContent:'center',alignItems:'center',padding:8,borderRadius:5}}
+                      onPress={addAttended}
+                    >
+                    <Text style={{width:'auto',height:'auto',color:'#ffffff',fontWeight:'bold',fontSize:20}}>Enviar</Text>
+                  </TouchableOpacity>
+                  }
+
+                    <TouchableOpacity
+                    style={{backgroundColor:'#264653',display:'flex',justifyContent:'center',alignItems:'center',padding:8,borderRadius:5}}
+                      onPress={()=>setVerifyStudent(false)}
+                    >
+                    <Text style={{width:'auto',height:'auto',color:'#ffffff',fontWeight:'bold',fontSize:20}}>Cancelar</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                }
+                    
+                  
                   
                 </View>
               </View>

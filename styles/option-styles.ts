@@ -16,6 +16,10 @@ interface OptionScreen{
     paymentsBox:ViewStyle
     paymentsBtnsContainer:ViewStyle
     btnPaymentOption:ViewStyle
+    assistContainerBox:ViewStyle
+    textModayTodalDescription:TextStyle
+    actionBtns:ViewStyle
+    boxBtnTitleAction:ViewStyle
 }
 const { width } = Dimensions.get("window");
 const optionStyles :  OptionScreen = StyleSheet.create({
@@ -149,6 +153,41 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         alignItems:'center',
         padding:6,
         borderRadius:4
+    },
+    assistContainerBox:{
+        width:'100%',
+        height:'90%',        
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        justifyContent:'flex-start'
+    },
+    textModayTodalDescription:{ 
+        width:'auto',
+        height:30,
+        fontSize:18,
+        fontWeight:400
+    },
+    actionBtns:{
+      width: 'auto',
+      backgroundColor:'#f89b4e',
+      borderBottomColor:'#FAF3E0',
+      borderBottomWidth:1,
+      height:'100%',
+      paddingInline:10,
+      display:'flex',
+      justifyContent:'center',
+      alignItems:'center',
+      flexDirection:'column'
+    },
+    boxBtnTitleAction:{
+        width:'100%',
+        height:40,
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        flexDirection:'row',
+        columnGap:30
     }
 })
 
