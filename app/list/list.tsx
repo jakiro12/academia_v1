@@ -31,7 +31,7 @@ const FullListStudents =()=>{
             telefonos:[
                 {nombre:"madre",telefono:"1231231231"},{padre:"123123131"}
             ]
-             }                    
+             }                            
         ];
       
         try {
@@ -52,25 +52,24 @@ const FullListStudents =()=>{
             <TouchableOpacity style={styles.boxOptions}
                 onPress={()=>router.push('/list/option/option')}
             >
-                <Text>
+                <Text style={{fontSize:18}}>
                   Todos
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.boxOptions}
                 onPress={()=>router.push('/list/today/today')}
             >
-                <Text>
+                <Text style={{fontSize:18}}>
                    Hoy
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.boxOptions}
                 onPress={()=>console.log('agregar alumno')}
             >
-                <Text>
+                <Text style={{fontSize:18}}>
                    Agregar alumno en: {studentsType}
                 </Text>
-            </TouchableOpacity>
-            
+            </TouchableOpacity>            
         </View>
     )
 }

@@ -1,10 +1,12 @@
-import { ScrollView, Text,TouchableOpacity,View } from "react-native"
+import { Modal, ScrollView, Text,TouchableOpacity,View } from "react-native"
 import styles from '../../../../../styles/option-styles'
 import { StudentsContext } from "@/app/_layout";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
+import DebtsStudentActions from "@/components/modal-debts";
 
 const PaymentHistory=()=>{
+    const [updateDebts,setUpdateDebts]=useState<boolean>(false)
     const context = useContext(StudentsContext)
     if (!context) {
         throw new Error("MyComponent debe usarse dentro de StudentsProvider")
@@ -61,6 +63,7 @@ const PaymentHistory=()=>{
                                     payment.tipo === 'deuda' ?
                                 <View style={styles.cardHistoryPaymentsBtn}>
                                     <TouchableOpacity
+                                        onPress={()=>setUpdateDebts(true)}
                                         style={{width:30,height:30,borderRadius:30}}
                                     >
                                         <AntDesign name="checkcircle" size={30} color="#B71C1C" />
@@ -73,6 +76,7 @@ const PaymentHistory=()=>{
                     </ScrollView>
                 </View>    
             </View>
+            <DebtsStudentActions onCloseModal={setUpdateDebts} updateDebts={updateDebts}/>
         </View>
     )
 }
