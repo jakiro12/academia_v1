@@ -21,6 +21,10 @@ interface OptionScreen{
     actionBtns:ViewStyle
     boxBtnTitleAction:ViewStyle
     btsExtraActionsStudent:ViewStyle
+    scrollHistoryPaymentsContainer:ViewStyle
+    cardHistoryPayments:ViewStyle
+    cardHistoryPaymentsData:ViewStyle
+    cardHistoryPaymentsBtn:ViewStyle
 }
 const { width } = Dimensions.get("window");
 const optionStyles :  OptionScreen = StyleSheet.create({
@@ -197,6 +201,35 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between'
+    },
+    scrollHistoryPaymentsContainer:{
+        width:'100%',
+        height:'70%'
+    },
+    cardHistoryPayments:{
+        width:'80%',
+        height:90,
+        borderRadius:10,
+        marginRight:'auto',
+        backgroundColor:'#FAF3E0',
+        display:'flex',
+        flexDirection:'row'
+    },
+    cardHistoryPaymentsData:{
+        width:'80%',
+        height:'100%',
+        display:'flex',
+        justifyContent:'space-around',
+        alignItems:'flex-start',
+        flexDirection:'column',
+        paddingLeft:5
+    },
+    cardHistoryPaymentsBtn:{
+        width:'20%',
+        height:'100%',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center'
     }
 })
 

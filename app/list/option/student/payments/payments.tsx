@@ -2,6 +2,7 @@ import { ScrollView, Text,TouchableOpacity,View } from "react-native"
 import styles from '../../../../../styles/option-styles'
 import { StudentsContext } from "@/app/_layout";
 import { useContext, useEffect } from "react";
+import { AntDesign } from "@expo/vector-icons";
 
 const PaymentHistory=()=>{
     const context = useContext(StudentsContext)
@@ -44,25 +45,25 @@ const PaymentHistory=()=>{
                 <Text style={styles.textModayTodalDescription}>Pagos rebicidos: {summaryAmounts()}$</Text>
                 <Text style={styles.textModayTodalDescription}>Debe: {debtAmounts()}$</Text>
                 <Text style={styles.textModayTodalDescription}>Neto: {summaryAmounts() - debtAmounts()}$</Text>
-                <View style={{width:'100%',height:'70%'}}>
+                <View style={styles.scrollHistoryPaymentsContainer}>
                     <ScrollView contentContainerStyle={styles.containerScroll} showsVerticalScrollIndicator={false}>             
                         {studentInformation.pagos.map((payment,index)=>(
                             <View 
                                 key={index}
-                                style={{width:'80%',height:90,borderRadius:10,marginRight:'auto',backgroundColor:'#FAF3E0',display:'flex',flexDirection:'row'}}
+                                style={styles.cardHistoryPayments}
                                 >
-                                <View style={{width:'80%',height:'100%',display:'flex',justifyContent:'space-around',alignItems:'flex-start',flexDirection:'column',paddingLeft:5}}>
+                                <View style={styles.cardHistoryPaymentsData}>
                                     <Text>Tipo de pago: {payment.tipo}</Text>
-                                    <Text style={{color:payment.tipo === 'deuda' ? '#ff0000' : '#4CAF50'}}>Valor: {payment.valor}</Text>
+                                    <Text style={{color:payment.tipo === 'deuda' ? '#B71C1C' : '#4CAF50'}}>Valor: {payment.valor}</Text>
                                     <Text>Fecha de pago: {payment.fecha}</Text>
                                 </View>
                                 {
                                     payment.tipo === 'deuda' ?
-                                <View style={{width:'20%',height:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+                                <View style={styles.cardHistoryPaymentsBtn}>
                                     <TouchableOpacity
-                                        style={{width:30,height:30,borderRadius:30,backgroundColor:'#ff0000'}}
+                                        style={{width:30,height:30,borderRadius:30}}
                                     >
-                                        <Text>A</Text>
+                                        <AntDesign name="checkcircle" size={30} color="#B71C1C" />
                                     </TouchableOpacity>
                                 </View>                                
                                 : null
