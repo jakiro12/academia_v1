@@ -20,6 +20,7 @@ interface OptionScreen{
     textModayTodalDescription:TextStyle
     actionBtns:ViewStyle
     boxBtnTitleAction:ViewStyle
+    btsExtraActionsStudent:ViewStyle
 }
 const { width } = Dimensions.get("window");
 const optionStyles :  OptionScreen = StyleSheet.create({
@@ -122,7 +123,7 @@ const optionStyles :  OptionScreen = StyleSheet.create({
     btnTurns:{
         marginTop: 10,
         backgroundColor:'#264653',
-        width:100,
+        width:150,
         borderRadius:5,
         display:'flex',
         justifyContent:'center',
@@ -188,6 +189,14 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         alignItems:'center',
         flexDirection:'row',
         columnGap:30
+    },
+    btsExtraActionsStudent:{
+        width:'100%',
+        height:'auto',
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between'
     }
 })
 

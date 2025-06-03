@@ -5,6 +5,7 @@ import { useContext,  useState } from "react"
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { AntDesign } from "@expo/vector-icons";
 import ModalCustomActions from "@/components/modal-actions";
+import { router } from "expo-router";
 
 const InformationStudent = () => {
     const context = useContext(StudentsContext);
@@ -74,17 +75,38 @@ const InformationStudent = () => {
                     </View>
                 ))}
                 </View>
-                <TouchableOpacity style={styles.btnTurns}
-                    onPress={()=>handleTurnsOption('see')}
+                <View style={styles.btsExtraActionsStudent}>
+                    <TouchableOpacity style={styles.btnTurns}
+                        onPress={()=>handleTurnsOption('see')}
+                        activeOpacity={0.7}
+                    >
+                        <Text style={{ fontSize: 18, color: '#ffffff' }}>Ver historial</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        activeOpacity={0.7}
+                        style={styles.btnTurns}
+                        onPress={()=>handleTurnsOption('')}
+                    >
+                    <Text style={{ fontSize: 18, color: '#ffffff' }}>Agregar turno</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.btsExtraActionsStudent}>
+
+                <TouchableOpacity
+                    activeOpacity={0.7}
+                    style={styles.btnTurns}
+                    onPress={()=>console.log('marcar nueva asistencia')}
                 >
-                    <Text style={{ fontSize: 20, color: '#ffffff' }}>Historial</Text>
+                <Text style={{ fontSize: 18, color: '#ffffff' }}>Asistencia +</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
+                    activeOpacity={0.7}
                     style={styles.btnTurns}
-                    onPress={()=>handleTurnsOption('')}
+                    onPress={()=>router.push('/list/option/student/payments/payments')}
                 >
-                <Text style={{ fontSize: 20, color: '#ffffff' }}>Agregar</Text>
+                <Text style={{ fontSize: 18, color: '#ffffff' }}>Ver pagos</Text>
                 </TouchableOpacity>
+                </View>
             </View>
             <ModalCustomActions 
                 checkDates={checkDates} 

@@ -19,9 +19,7 @@ const [studentsType,setStudentsType]=useState<string>('primario')
 const [auxIndex,setAuxIndex]=useState<number | null>(null)
 const [studentInformation, setStudentInformation] = useState<StudentData>({
   nombre: '',
-  deuda: '',
   establecimiento: '',
-  total_pagado: '',
   asistencia: {
     fijo: false,
     carga_horaria: '',
@@ -31,6 +29,7 @@ const [studentInformation, setStudentInformation] = useState<StudentData>({
   },
   telefonos: [],
   materias: [],
+  pagos:[]
 });
 /*  
 Rol	Color	Hex	Descripción
@@ -49,6 +48,7 @@ Contraste fuerte	🔵	#264653	Azul petróleo, aporta profundidad.
         <Stack.Screen name="list/list" options={{ headerShown: false }} />
         <Stack.Screen name="list/option/option" options={{ headerShown: false }} />
         <Stack.Screen name="list/option/student/student" options={{ headerShown: false }} />
+        <Stack.Screen name="list/option/student/payments/payments" options={{ headerShown: false }} />
         <Stack.Screen name="list/today/today" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
