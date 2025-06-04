@@ -1,4 +1,4 @@
-import { Linking, Text, TouchableOpacity, View } from "react-native"
+import { ActivityIndicator, Linking, Text, TouchableOpacity, View } from "react-native"
 import styles from '../../../../styles/option-styles'
 import { StudentsContext } from "@/app/_layout"
 import { useContext,  useState } from "react"
@@ -6,21 +6,56 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { AntDesign } from "@expo/vector-icons";
 import ModalCustomActions from "@/components/modal-actions";
 import { router } from "expo-router";
+import { shortFormatDate } from "@/utils/dateUtils";
+import { firebaseconn } from "@/firebaseconn/conn";
+import { getDoc, doc,updateDoc  } from "firebase/firestore";
 
 const InformationStudent = () => {
     const context = useContext(StudentsContext);
     const [checkDates,setCheckDates]=useState<boolean>(false)
     const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
     const [modalType,setModalType]=useState<string>('see')
+    const [loading,setLoading]=useState<boolean>(false)
+
 
     if (!context) {
         throw new Error("MyComponent debe usarse dentro de StudentsProvider");
     }
 
-    const { studentInformation } = context;
-   
+    const { studentInformation,studentsType, auxIndex } = context;
+   const addAttended = async () => {
+         setLoading(true)
+             try {
+                 const docRef = doc(firebaseconn, "escuela", studentsType);  
+                 const docSnap = await getDoc(docRef)              
+                 if (docSnap.exists()) {
+                     const data = docSnap.data();
+                     const alumnos = data?.alumnos || [];
+                     if (auxIndex !== null) {
+                         const updatedAgenda = alumnos[auxIndex].asistencia.historial;
+                         updatedAgenda.push(shortFormatDate);
+                         await updateDoc(docRef, {
+                             alumnos: alumnos.map((student: any, index: number) => 
+                                 index === auxIndex
+                                     ? { ...student, asistencia: { ...student.asistencia, historial: updatedAgenda } }
+                                     : student
+                             )
+                         });
+                         console.log("Asistencia agregada con éxito.");
+                     } else {
+                         console.error("Alumno no encontrado.");
+                     }
+                 } else {
+                     console.error("El documento no existe.");
+                 }
+             } catch (error) {
+                 console.error("Error al agregar la fecha:", error);
+             }finally{
+               setLoading(false)
+             }
+         };
     const handleExternalLinks = (phone: string) => {
-        Linking.openURL(`https://wa.me/${phone}`);
+        Linking.openURL(`https://wa.me/${phone}`)
     };
 
     const toggleExpand = (index: number) => {
@@ -91,14 +126,17 @@ const InformationStudent = () => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.btsExtraActionsStudent}>
-
-                <TouchableOpacity
-                    activeOpacity={0.7}
-                    style={styles.btnTurns}
-                    onPress={()=>console.log('marcar nueva asistencia')}
-                >
-                <Text style={{ fontSize: 18, color: '#ffffff' }}>Asistencia +</Text>
-                </TouchableOpacity>
+                {
+                    loading ? <ActivityIndicator size={18} color='#ffffff'/>
+                    :
+                    <TouchableOpacity
+                        activeOpacity={0.7}
+                        style={styles.btnTurns}
+                        onPress={addAttended}
+                    >
+                        <Text style={{ fontSize: 18, color: '#ffffff' }}>Asistencia +</Text>
+                    </TouchableOpacity>
+                }
                 <TouchableOpacity
                     activeOpacity={0.7}
                     style={styles.btnTurns}

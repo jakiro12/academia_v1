@@ -69,6 +69,13 @@ const FullListStudents =()=>{
                 <Text style={{fontSize:18}}>
                    Agregar alumno en: {studentsType}
                 </Text>
+            </TouchableOpacity>     
+              <TouchableOpacity style={styles.boxOptions}
+                onPress={()=>console.log('Ver todo los ganado')}
+            >
+                <Text style={{fontSize:18}}>
+                   Ingresos generados
+                </Text>
             </TouchableOpacity>            
         </View>
     )
