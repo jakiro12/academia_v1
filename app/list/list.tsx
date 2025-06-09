@@ -71,7 +71,7 @@ const FullListStudents =()=>{
                 </Text>
             </TouchableOpacity>     
               <TouchableOpacity style={styles.boxOptions}
-                onPress={()=>console.log('Ver todo los ganado')}
+                onPress={()=>router.push('/list/earnings/earning')}
             >
                 <Text style={{fontSize:18}}>
                    Ingresos generados

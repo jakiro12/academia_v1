@@ -50,6 +50,7 @@ Contraste fuerte	🔵	#264653	Azul petróleo, aporta profundidad.
         <Stack.Screen name="list/option/student/student" options={{ headerShown: false }} />
         <Stack.Screen name="list/option/student/payments/payments" options={{ headerShown: false }} />
         <Stack.Screen name="list/today/today" options={{ headerShown: false }} />
+        <Stack.Screen name="list/earnings/earning" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
     </StudentsContext.Provider>
