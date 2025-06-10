@@ -5,8 +5,9 @@ import { useContext, useEffect, useState } from "react"
 import { firebaseconn } from "@/firebaseconn/conn"
 import {  doc, getDoc } from "firebase/firestore"
 import { router } from "expo-router"
+import { StudentData } from "@/constants/stateTypes"
 const OptionSelected=()=>{
-      const [dataStudents,setDataStudents]=useState<any[]>([])
+      const [dataStudents,setDataStudents]=useState<StudentData[]>([])
       const [loading,setLoading]=useState<boolean>(false)
       const context = useContext(StudentsContext);
       if (!context) throw new Error("StudentsContext no está disponible");

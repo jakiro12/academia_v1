@@ -4,10 +4,18 @@ import { doc, getDoc } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native"
 import styles from '../../../styles/option-styles'
+import { StudentData } from "@/constants/stateTypes";
+
+type Payment = {
+    fecha:string,
+    tipo:string,
+    valor:string,
+}
 
 const SeeEarningsByLevel =()=>{
     const [loading,setLoading]=useState<boolean>(false)
-    const [payments,setPayments]=useState<any[]>([])
+    const [payments,setPayments]=useState<Payment[]>([])
+    const [studentsCount,setStudentsCount]=useState<number | null>(null)
 
     const context = useContext(StudentsContext);
     if (!context) throw new Error("StudentsContext no está disponible");       
@@ -19,9 +27,9 @@ const SeeEarningsByLevel =()=>{
               const docSnap = await getDoc(docRef);
           
               if (docSnap.exists()) {
-                  let res=docSnap.data().alumnos
-                  let allPayments=res.flatMap(alumno=>alumno.pagos)
-                  console.log(allPayments)
+                  let res=docSnap.data().alumnos 
+                  setStudentsCount(res.length)
+                  let allPayments=res.flatMap((alumno : StudentData)=>alumno.pagos)
                   setPayments(allPayments)                  
               } else {
                 console.log("No se encontró el documento");
@@ -54,23 +62,32 @@ const SeeEarningsByLevel =()=>{
     return(
        <View style={styles.container}>
             <View style={styles.infoCardStudent}>
-            <Text>
-                hola soy las ganancias
+            <Text style={{width:'auto',height:40,fontSize:20,marginInline:'auto'}}>
+                Rendimientos actuales
             </Text>
             {
                 loading ? <ActivityIndicator size={24} color="#ff0000"/>
                 :
-                <>
-                <Text>
-                hola las deudas son: {handleDebts()}
-            </Text>
-            <Text>
-                Holas las ganancias totales son: {handleEarnings()}
-            </Text>
-            <Text>
-                Saldo a favor neto: {handleEarnings() - handleDebts()}
-            </Text>
-            </>
+                <View style={{width:'100%',height:'70%',display:'flex',justifyContent:'space-between',alignItems:'flex-start',flexDirection:'column'}}>
+                    <Text>
+                        Ingresos: {handleEarnings()}
+                    </Text>
+                    <Text>
+                        Deudas: {handleDebts()}
+                    </Text>
+                    <Text>
+                        Saldo Neto: {handleEarnings() - handleDebts()}
+                    </Text>
+                    <View>
+                        <Text>Alumnos totales</Text>
+                        <Text>{studentsCount}</Text>
+                    </View>
+                    <View>
+                        <Text>
+                            Nuevos Alumnos
+                        </Text>
+                    </View>
+            </View>
             }
             
         </View>
