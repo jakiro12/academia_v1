@@ -25,6 +25,10 @@ interface OptionScreen{
     cardHistoryPayments:ViewStyle
     cardHistoryPaymentsData:ViewStyle
     cardHistoryPaymentsBtn:ViewStyle
+    boxAboutBothEarnings:ViewStyle
+    boxAboutAllEarnings:ViewStyle
+    cardAmountEarnings:TextStyle
+    cardFullEarnings:TextStyle
 }
 const { width } = Dimensions.get("window");
 const optionStyles :  OptionScreen = StyleSheet.create({
@@ -230,6 +234,39 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         display:'flex',
         justifyContent:'center',
         alignItems:'center'
+    },
+    boxAboutBothEarnings:{
+        width:'auto',
+        height:'40%',
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+        columnGap:20
+    },
+    boxAboutAllEarnings:{
+        width:'100%',
+        height:'30%',
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        justifyContent:'space-between'
+    },
+    cardAmountEarnings:{
+        width:'30%',
+        height:'100%',        
+        textAlign:'center',
+        fontSize:20,
+        borderRadius:10,
+        backgroundColor:'#FDD48A'
+    },
+    cardFullEarnings:{
+        width:'30%',
+        height:'40%',        
+        textAlign:'center',
+        fontSize:20,
+        borderRadius:10,
+        backgroundColor:'#FDD48A'
     }
 })
 

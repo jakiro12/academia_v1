@@ -69,23 +69,33 @@ const SeeEarningsByLevel =()=>{
                 loading ? <ActivityIndicator size={24} color="#ff0000"/>
                 :
                 <View style={{width:'100%',height:'70%',display:'flex',justifyContent:'space-between',alignItems:'flex-start',flexDirection:'column'}}>
-                    <Text>
-                        Ingresos: {handleEarnings()}
-                    </Text>
-                    <Text>
-                        Deudas: {handleDebts()}
-                    </Text>
-                    <Text>
-                        Saldo Neto: {handleEarnings() - handleDebts()}
-                    </Text>
-                    <View>
-                        <Text>Alumnos totales</Text>
-                        <Text>{studentsCount}</Text>
+                    <View style={styles.boxAboutAllEarnings}>
+                          <View style={styles.boxAboutBothEarnings}>
+                                <Text style={styles.cardAmountEarnings}>
+                                    Ingresos: {handleEarnings()}
+                                </Text>
+                                <Text style={styles.cardAmountEarnings}>
+                                    Deudas: {handleDebts()}
+                                </Text>
+                          </View>  
+                          <Text style={styles.cardFullEarnings}>
+                            Neto: {handleEarnings() - handleDebts()}
+                          </Text>
                     </View>
-                    <View>
-                        <Text>
-                            Nuevos Alumnos
-                        </Text>
+                    
+                    <View style={{width:'100%',height:'20%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+                        <View style={{width:'auto',height:'auto',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'space-between',rowGap:10}}>
+                            <Text>Alumnos totales</Text>
+                            <Text>{studentsCount}</Text>
+                        </View>
+                        <View style={{width:'auto',height:'auto',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'space-between',rowGap:10}}>
+                            <Text>
+                                Horas impartidas
+                            </Text>
+                            <Text>
+                                XX
+                            </Text>
+                        </View>
                     </View>
             </View>
             }
