@@ -60,14 +60,14 @@ const FullListStudents =()=>{
                 onPress={()=>router.push('/list/today/today')}
             >
                 <Text style={{fontSize:18}}>
-                   Hoy
+                 Asisten Hoy
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.boxOptions}
-                onPress={()=>console.log('agregar alumno')}
+                onPress={()=>router.push('/list/addStudent/addStudent')}
             >
                 <Text style={{fontSize:18}}>
-                   Agregar alumno en: {studentsType}
+                   Agregar nuevo estudiante
                 </Text>
             </TouchableOpacity>     
               <TouchableOpacity style={styles.boxOptions}
