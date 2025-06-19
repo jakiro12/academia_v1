@@ -29,6 +29,15 @@ interface OptionScreen{
     boxAboutAllEarnings:ViewStyle
     cardAmountEarnings:TextStyle
     cardFullEarnings:TextStyle
+    boxNewStudentData:ViewStyle
+    inputNewStudentData:TextStyle
+    newStudentDataDay:ViewStyle
+    newStudentDataFixedDay:ViewStyle
+    btnSendActionContainer:ViewStyle
+    btnSubmitAction:ViewStyle
+    btnRejectAction:ViewStyle
+    textBtnActions:TextStyle
+    textNewStudentData:TextStyle
 }
 const { width } = Dimensions.get("window");
 const optionStyles :  OptionScreen = StyleSheet.create({
@@ -267,6 +276,72 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         fontSize:20,
         borderRadius:10,
         backgroundColor:'#FDD48A'
+    },
+    boxNewStudentData:{
+         width: '100%', 
+         height: '12%', 
+         display: 'flex', 
+         flexDirection: 'column', 
+         alignItems: 'flex-start', 
+         justifyContent: 'space-between' 
+    },
+    inputNewStudentData:{
+         width: '100%', 
+         height: 40, 
+         borderBottomWidth: 1, 
+         borderBottomColor: '#000000' 
+    },
+    newStudentDataDay:{
+        width:'100%',
+        height:'50%',
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-around'
+    },
+    newStudentDataFixedDay:{
+        width:40,
+        height:40,
+        borderRadius:10,
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    btnSendActionContainer:{ 
+        width: '100%', 
+        height: '10%', 
+        display: 'flex', 
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        justifyContent: 'space-around' 
+    },
+    btnSubmitAction:{
+        backgroundColor: '#A8D5BA', 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        padding: 8, 
+        borderRadius: 5 
+    },
+    btnRejectAction:{ 
+        backgroundColor: '#264653', 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        padding: 8, 
+        borderRadius: 5 
+    },
+    textBtnActions:{ 
+        width: 'auto', 
+        height: 'auto', 
+        color: '#ffffff', 
+        fontWeight: 'bold', 
+        fontSize: 20 
+    },
+    textNewStudentData:{
+        width:'auto',
+        height:'auto',
+        fontSize:18,
     }
 })
 
