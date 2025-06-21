@@ -1,50 +1,57 @@
-# Welcome to your Expo app 👋
+# 📚 Academia Aprendemos Juntos
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**Academia Aprendemos Juntos** es una aplicación móvil educativa desarrollada para dispositivos Android. Su objetivo principal es facilitar el aprendizaje colaborativo entre estudiantes y profesores, a través de una experiencia interactiva, intuitiva y amigable.
 
-## Get started
+Esta app ha sido desarrollada utilizando **React Native** con el entorno de desarrollo **Expo**, lo que permite una construcción rápida, escalable y compatible con múltiples plataformas móviles.
 
-1. Install dependencies
+---
+
+## 🚀 Características Principales
+
+- Registro e inicio de sesión de usuarios
+- Visualización de cursos disponibles
+- Inscripción a cursos y seguimiento del progreso
+- Recursos multimedia: videos, documentos y enlaces externos
+- Foro de preguntas y respuestas
+- Notificaciones push
+
+---
+
+## 🛠 Tecnologías Utilizadas
+
+| Tecnología         | Descripción                                                                 |
+|--------------------|-----------------------------------------------------------------------------|
+| React Native        | Framework para el desarrollo de apps móviles multiplataforma                |
+| Expo                | Herramienta para facilitar el desarrollo y despliegue de apps React Native |
+| Firebase            | Autenticación, base de datos en tiempo real y almacenamiento               |
+| React Navigation    | Manejo de navegación dentro de la aplicación                               |
+| Redux / Context API | Manejo del estado de la aplicación                                          |
+| NativeBase / UI Kitten | Librerías para componentes UI personalizados                          |
+| Push Notifications  | Sistema de alertas y recordatorios para el usuario                         |
+
+---
+
+## 📸 Capturas de Pantalla
+
+A continuación, algunas imágenes de muestra de la aplicación:
+
+### Pantalla de Inicio
+![Pantalla de Inicio](./assets/screenshots/inicio.png)
+
+### Lista de Cursos
+![Lista de Cursos](./assets/screenshots/cursos.png)
+
+### Detalle del Curso
+![Detalle del Curso](./assets/screenshots/detalle_curso.png)
+
+> Asegúrate de tener estas imágenes en la carpeta `assets/screenshots/` de tu repositorio.
+
+---
+
+## 📦 Instalación y Ejecución
+
+1. Clona el repositorio:
 
    ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+   git clone https://github.com/tu_usuario/academia-aprendemos-juntos.git
+   cd academia-aprendemos-juntos
