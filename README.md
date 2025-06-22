@@ -50,6 +50,6 @@ A continuación, algunas imágenes de muestra de la aplicación:
 1. Clona el repositorio:
 
    ```bash
-   git clone https://github.com/jakiro12/academia_v1_.git
+   git clone https://github.com/jakiro12/academia_v1
    cd academia_v1
    npx expo start
