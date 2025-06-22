@@ -131,7 +131,7 @@ const AddNewStudent = () => {
         <View style={styles.boxNewStudentData}>
           <Text
             style={styles.textNewStudentData}          
-          >Horario fijo: true or false</Text>
+          >Horario fijo:</Text>
           <View style={styles.newStudentDataDay}>
             <TouchableOpacity 
                 style={[styles.newStudentDataFixedDay,{backgroundColor:newStudentData.fijo === true ? '#FDD48A' :'#fdd58a73'}]}
@@ -153,7 +153,7 @@ const AddNewStudent = () => {
         <View style={styles.boxNewStudentData}>
           <Text
             style={styles.textNewStudentData}          
-          >Carga Horaria: horas</Text>
+          >Carga Horaria:</Text>
           <TextInput
             style={styles.inputNewStudentData}
             placeholder="Horas"
