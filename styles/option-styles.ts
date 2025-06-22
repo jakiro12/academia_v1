@@ -184,19 +184,20 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         width:'auto',
         height:30,
         fontSize:18,
-        fontWeight:400
+        fontWeight:500
     },
     actionBtns:{
       width: 'auto',
       backgroundColor:'#f89b4e',
-      borderBottomColor:'#FAF3E0',
-      borderBottomWidth:1,
+      borderColor:'#FAF3E0',
+      borderWidth:1,
       height:'100%',
       paddingInline:10,
       display:'flex',
       justifyContent:'center',
       alignItems:'center',
-      flexDirection:'column'
+      flexDirection:'column',
+      borderRadius:10
     },
     boxBtnTitleAction:{
         width:'100%',

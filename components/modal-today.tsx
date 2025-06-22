@@ -1,4 +1,4 @@
-import { View, Modal, TouchableOpacity, Text, TextInput, ActivityIndicator } from "react-native"
+import { View, Modal, TouchableOpacity, Text, TextInput, ActivityIndicator, Alert } from "react-native"
 import styles from '../styles/option-styles'
 import { StudentData } from "@/constants/stateTypes"
 import { useContext, useState } from "react"
@@ -102,7 +102,7 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
     }
 
   } else {
-    console.log("Debe seleccionar un tipo de pago y un monto.");
+    Alert.alert("Debe seleccionar un tipo de pago y un monto.")
   }
 };
 
@@ -117,7 +117,7 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
                 <View style={styles.infoCardStudentAssit}>
                   <View style={styles.boxBtnTitleAction}>
                     <TouchableOpacity
-                      style={styles.actionBtns}
+                      style={[styles.actionBtns,{opacity:typeAction ? 1 : 0.6}]}
                       onPress={()=>setTypeAction(true)}
                     >
                       <Text
@@ -125,7 +125,7 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
                       >Pagos</Text>                      
                     </TouchableOpacity>                  
                     <TouchableOpacity
-                      style={styles.actionBtns}
+                      style={[styles.actionBtns,{opacity:typeAction ? 0.6 : 1}]}
                       onPress={()=>setTypeAction(false)}
                     >
                       <Text

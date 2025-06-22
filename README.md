@@ -1,6 +1,6 @@
 # 📚 Academia Aprendemos Juntos
 
-**Academia Aprendemos Juntos** es una aplicación móvil educativa desarrollada para dispositivos Android. Su objetivo principal es facilitar el aprendizaje colaborativo entre estudiantes y profesores, a través de una experiencia interactiva, intuitiva y amigable.
+**Academia Aprendemos Juntos** es una aplicación móvil educativa desarrollada para dispositivos Android. Su objetivo principal es facilitar la administracion de horarios y material de estudio de los estudiantes en la academia, a través de una experiencia interactiva, intuitiva y amigable.
 
 Esta app ha sido desarrollada utilizando **React Native** con el entorno de desarrollo **Expo**, lo que permite una construcción rápida, escalable y compatible con múltiples plataformas móviles.
 
@@ -36,10 +36,10 @@ A continuación, algunas imágenes de muestra de la aplicación:
 ### Pantalla de Inicio
 ![Pantalla de Inicio](./assets/screenshots/inicio.png)
 
-### Lista de Cursos
+### Lista de Asistencia de Alumnos
 ![Lista de Cursos](./assets/screenshots/alumnos.png)
 
-### Detalle del Curso
+### Agregar nuevo Alumno
 ![Detalle del Curso](./assets/screenshots/detalles.png)
 
 

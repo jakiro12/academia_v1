@@ -1,6 +1,6 @@
 import { StudentsContext } from "@/app/_layout";
 import { useContext, useState } from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from '../../../styles/option-styles';
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { firebaseconn } from "@/firebaseconn/conn";
@@ -41,6 +41,7 @@ const AddNewStudent = () => {
   };
 
   const agregarAlumnos = async () => {
+    if(Object.values(newStudentData).includes('')) return Alert.alert('completar los campos')
     setLoading(true)
     const nuevosAlumnos = [
       {
@@ -86,7 +87,7 @@ const AddNewStudent = () => {
     }
   }
 
-  const handleAbortNewStudent = () => {
+  const handleAbortNewStudent = () => {    
     setNewStudentData({
       nombre: "",
       establecimiento: "",
@@ -97,7 +98,6 @@ const AddNewStudent = () => {
   }
 
   const handleSubmit = () => {
-    console.log(newStudentData)
     agregarAlumnos()    
   }
 
@@ -107,10 +107,10 @@ const AddNewStudent = () => {
         <View style={styles.boxNewStudentData}>
           <Text
             style={styles.textNewStudentData}
-          >Nombre</Text>
+          >Nombre completo</Text>
           <TextInput
             style={styles.inputNewStudentData}
-            placeholder="Nombre"
+            placeholder="Nombre y Apellido"
             value={newStudentData.nombre}
             onChangeText={(text) => handleInputChange('nombre', text)}
           />
@@ -119,7 +119,7 @@ const AddNewStudent = () => {
           <Text
             style={styles.textNewStudentData}
           
-          >Establecimiento:</Text>
+          >Establecimiento educativo:</Text>
           <TextInput
             style={styles.inputNewStudentData}
             placeholder="Escuela o instituto"
@@ -131,7 +131,7 @@ const AddNewStudent = () => {
         <View style={styles.boxNewStudentData}>
           <Text
             style={styles.textNewStudentData}          
-          >Horario fijo:</Text>
+          >Asistira en horario y dia fijo:</Text>
           <View style={styles.newStudentDataDay}>
             <TouchableOpacity 
                 style={[styles.newStudentDataFixedDay,{backgroundColor:newStudentData.fijo === true ? '#FDD48A' :'#fdd58a73'}]}
@@ -156,7 +156,7 @@ const AddNewStudent = () => {
           >Carga Horaria:</Text>
           <TextInput
             style={styles.inputNewStudentData}
-            placeholder="Horas"
+            placeholder="Cantidad de Horas"
             value={newStudentData.carga_horaria}
             onChangeText={(text) => handleInputChange('carga_horaria', text)}
           />
