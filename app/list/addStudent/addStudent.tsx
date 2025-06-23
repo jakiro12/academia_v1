@@ -1,6 +1,6 @@
 import { StudentsContext } from "@/app/_layout";
-import { useContext, useState } from "react";
-import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useContext, useEffect, useState } from "react";
+import { Alert, Dimensions, Keyboard, Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from '../../../styles/option-styles';
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { firebaseconn } from "@/firebaseconn/conn";
@@ -18,7 +18,10 @@ const AddNewStudent = () => {
   const context = useContext(StudentsContext);
   if (!context) throw new Error("StudentsContext no está disponible");
   const { studentsType } = context;
+  const { height } = Dimensions.get('window')
+  const cardHeight= height * 0.8
   const [loading,setLoading]=useState<boolean>(false)
+  const [keyboardActive,setKeyboardActive]=useState<boolean>(false)
   const [newStudentData, setNewStudentData] = useState<StudentData>({
     nombre: "",
     establecimiento: "",
@@ -100,10 +103,23 @@ const AddNewStudent = () => {
   const handleSubmit = () => {
     agregarAlumnos()    
   }
+useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardActive(true);
+    });
 
+    const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardActive(false);
+    });  
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
   return (
     <View style={styles.container}>
-      <View style={styles.infoCardStudent}>
+      <View style={[styles.infoCardStudent,{height:keyboardActive ? cardHeight : '80%',marginTop:keyboardActive ? 200 : 0}]}>
         <View style={styles.boxNewStudentData}>
           <Text
             style={styles.textNewStudentData}
