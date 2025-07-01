@@ -20,21 +20,21 @@ export default function HomeScreen() {
             onPress={()=>handleRouteState('primario')}
         > 
             <Text style={styles.textDescription}>
-                Primaria
+                Grado Primario
             </Text>          
         </TouchableOpacity>
         <TouchableOpacity style={styles.boxOptions}
             onPress={()=>handleRouteState('secundario')}
         > 
             <Text style={styles.textDescription}>
-                Secundaria
+                Grado Secundario
             </Text>          
         </TouchableOpacity>
         <TouchableOpacity style={styles.boxOptions}
             onPress={()=>handleRouteState('superior')}
         > 
             <Text style={styles.textDescription}>
-                Superior
+                Grado Superior
             </Text>          
         </TouchableOpacity>
       </View>

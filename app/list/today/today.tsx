@@ -120,7 +120,7 @@ const StudentsToday=()=>{
                 )}      
                 {fixDays.length > 0 && (
                   <>
-                    <Text style={{ fontWeight: 'bold', fontSize: 18, marginVertical: 10 }}>Horario y día fijo</Text>
+                    <Text style={{ fontWeight: 'bold', fontSize: 18, marginVertical: 10 }}>Con horario y día fijo</Text>
                     {renderFixedStudents()}
                   </>
                 )}

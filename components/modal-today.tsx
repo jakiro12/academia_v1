@@ -105,7 +105,11 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
     Alert.alert("Debe seleccionar un tipo de pago y un monto.")
   }
 };
-
+const handleRejectAllOptions=()=>{
+  setAttended('')
+  setAmount('')
+  setVerifyStudent(false)
+}
     return(
         <Modal
             visible={verifyStudent}
@@ -117,7 +121,7 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
                 <View style={styles.infoCardStudentAssit}>
                   <View style={styles.boxBtnTitleAction}>
                     <TouchableOpacity
-                      style={[styles.actionBtns,{opacity:typeAction ? 1 : 0.6}]}
+                      style={[styles.actionBtns,{opacity:typeAction ? 1 : 0.6,borderColor:typeAction ? '#FAF3E0' : '#00000041'}]}
                       onPress={()=>setTypeAction(true)}
                     >
                       <Text
@@ -125,7 +129,7 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
                       >Pagos</Text>                      
                     </TouchableOpacity>                  
                     <TouchableOpacity
-                      style={[styles.actionBtns,{opacity:typeAction ? 0.6 : 1}]}
+                      style={[styles.actionBtns,{opacity:typeAction ? 0.6 : 1,borderColor:typeAction ?  '#00000041':'#FAF3E0' }]}
                       onPress={()=>setTypeAction(false)}
                     >
                       <Text
@@ -135,39 +139,39 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
                 </View>
                  {typeAction ? 
                 <>
-                <Text style={{fontSize:20}}>{studentSelected?.nombre}</Text>                  
-                  <Text style={{fontSize:20}}>Carga horaria: {studentSelected?.asistencia.carga_horaria}Hrs</Text>
+                <Text style={{fontSize:18}}>{studentSelected?.nombre}</Text>                  
+                  <Text style={{fontSize:18}}>Carga horaria: {studentSelected?.asistencia.carga_horaria}Hrs</Text>
                   <View style={styles.paymentsBox}>
-                    <Text style={{fontSize:20}}>Tipo de pago:</Text>
+                    <Text style={{fontSize:18}}>Tipo de pago:</Text>
                     <View style={styles.paymentsBtnsContainer}>
                     <TouchableOpacity
                       onPress={()=>setAttended('clase')}
                        style={[styles.btnPaymentOption,{opacity: attended === 'clase' ? 1 : 0.6}]}
                     >                      
-                      <Text style={{fontSize:20}}>Clase</Text>
+                      <Text style={{fontSize:18}}>Clase</Text>
                     </TouchableOpacity>                     
                     <TouchableOpacity
                       onPress={()=>setAttended('mensual')}
                       style={[styles.btnPaymentOption,{opacity: attended === 'mensual' ? 1 : 0.6}]}
                     >
-                      <Text style={{fontSize:20}}>Mensual</Text>
+                      <Text style={{fontSize:18}}>Mensual</Text>
                     </TouchableOpacity>
                      <TouchableOpacity
                       onPress={()=>setAttended('fijo')}
                        style={[styles.btnPaymentOption,{opacity: attended === 'fijo' ? 1 : 0.6}]}
                     >
-                      <Text style={{fontSize:20}}>Fijo</Text>
+                      <Text style={{fontSize:18}}>Fijo</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={()=>setAttended('deuda')}
                       style={[styles.btnPaymentOption,{opacity: attended === 'deuda' ? 1 : 0.6}]}
                     >                      
-                      <Text style={{fontSize:20}}>Deuda</Text>
+                      <Text style={{fontSize:18}}>Deuda</Text>
                     </TouchableOpacity>
                     </View>
                   </View>
                   <View style={{width:'100%',height:'auto',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',columnGap:20}}>
-                    <Text style={{fontSize:20}}>Monto a pagar:</Text>
+                    <Text style={{fontSize:18}}>Monto a pagar:</Text>
                     <TextInput 
                       value={amount}
                       onChangeText={(text)=>setAmount(text)}
@@ -190,7 +194,7 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
 
                     <TouchableOpacity
                     style={{backgroundColor:'#264653',display:'flex',justifyContent:'center',alignItems:'center',padding:8,borderRadius:5}}
-                      onPress={()=>setVerifyStudent(false)}
+                      onPress={handleRejectAllOptions}
                     >
                     <Text style={{width:'auto',height:'auto',color:'#ffffff',fontWeight:'bold',fontSize:20}}>Cancelar</Text>
                     </TouchableOpacity>
@@ -214,16 +218,13 @@ const TodayStudentsActions: React.FC<TodayStudentsDataType>=({verifyStudent,stud
 
                     <TouchableOpacity
                     style={{backgroundColor:'#264653',display:'flex',justifyContent:'center',alignItems:'center',padding:8,borderRadius:5}}
-                      onPress={()=>setVerifyStudent(false)}
+                      onPress={handleRejectAllOptions}
                     >
                     <Text style={{width:'auto',height:'auto',color:'#ffffff',fontWeight:'bold',fontSize:20}}>Cancelar</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
-                }
-                    
-                  
-                  
+                }                                                        
                 </View>
               </View>
           </Modal>

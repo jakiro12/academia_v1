@@ -3,6 +3,7 @@ import { StyleSheet,ImageStyle,ViewStyle,TextStyle } from "react-native";
 interface ListScreen{
     container:ViewStyle
     boxOptions:ViewStyle
+    boxText:TextStyle
 }
 const listStyles :  ListScreen = StyleSheet.create({
     container:{
@@ -18,7 +19,7 @@ const listStyles :  ListScreen = StyleSheet.create({
     },
     boxOptions:{
         width:'90%',
-        height:120,        
+        height:100,        
         borderRadius:15,
         marginTop:20,
         backgroundColor:'#F4A261',
@@ -27,6 +28,10 @@ const listStyles :  ListScreen = StyleSheet.create({
         justifyContent:'center',
         boxShadow:'2px 2px 5px 0pxrgba(0, 0, 0, 0.34)',        
     },
+    boxText:{
+        fontSize:18,
+        fontWeight:500
+    }
 })
 
 export default listStyles

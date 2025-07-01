@@ -71,19 +71,34 @@ const SeeEarningsByLevel =()=>{
                 <View style={{width:'100%',height:'70%',display:'flex',justifyContent:'space-between',alignItems:'flex-start',flexDirection:'column'}}>
                     <View style={styles.boxAboutAllEarnings}>
                           <View style={styles.boxAboutBothEarnings}>
-                                <Text style={styles.cardAmountEarnings}>
-                                    Ingresos: {handleEarnings()}
-                                </Text>
-                                <Text style={styles.cardAmountEarnings}>
-                                    Deudas: {handleDebts()}
-                                </Text>
+                                <View style={styles.cardAmountEarnings}>
+                                    <Text>
+                                        Ingresos:
+                                    </Text>                                     
+                                    <Text style={{fontSize:18}}>
+                                        {handleEarnings()}                                    
+                                    </Text>
+                                </View>
+                                <View style={styles.cardAmountEarnings}>
+                                    <Text>
+                                        Deudas:
+                                    </Text>
+                                    <Text style={{fontSize:18}}>
+                                        {handleDebts()}
+                                    </Text>
+                                </View>
                           </View>  
-                          <Text style={styles.cardFullEarnings}>
-                            Neto: {handleEarnings() - handleDebts()}
-                          </Text>
+                          <View style={styles.cardFullEarnings}>
+                            <Text>
+                                Neto:
+                            </Text>
+                            <Text style={{fontSize:18}}>
+                                {handleEarnings() - handleDebts()}
+                            </Text>
+                          </View>
                     </View>
                     
-                    <View style={{width:'100%',height:'20%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+                    <View style={{width:'100%',height:'20%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
                         <View style={{width:'auto',height:'auto',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'space-between',rowGap:10}}>
                             <Text>Alumnos totales</Text>
                             <Text>{studentsCount}</Text>
@@ -96,7 +111,7 @@ const SeeEarningsByLevel =()=>{
                                 XX
                             </Text>
                         </View>
-                    </View>
+                    </View>                    
             </View>
             }
             

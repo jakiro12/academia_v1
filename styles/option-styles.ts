@@ -27,8 +27,8 @@ interface OptionScreen{
     cardHistoryPaymentsBtn:ViewStyle
     boxAboutBothEarnings:ViewStyle
     boxAboutAllEarnings:ViewStyle
-    cardAmountEarnings:TextStyle
-    cardFullEarnings:TextStyle
+    cardAmountEarnings:ViewStyle
+    cardFullEarnings:ViewStyle
     boxNewStudentData:ViewStyle
     inputNewStudentData:TextStyle
     newStudentDataDay:ViewStyle
@@ -62,7 +62,7 @@ const optionStyles :  OptionScreen = StyleSheet.create({
     },
     boxOptions:{
         width:'90%',
-        height:120,        
+        height:100,        
         borderRadius:15,
         marginTop:20,
         backgroundColor:'#F4A261',
@@ -140,7 +140,7 @@ const optionStyles :  OptionScreen = StyleSheet.create({
     btnTurns:{
         marginTop: 10,
         backgroundColor:'#264653',
-        width:150,
+        width:'46%',
         borderRadius:5,
         display:'flex',
         justifyContent:'center',
@@ -264,19 +264,27 @@ const optionStyles :  OptionScreen = StyleSheet.create({
     },
     cardAmountEarnings:{
         width:'30%',
-        height:'100%',        
-        textAlign:'center',
-        fontSize:20,
+        height:'100%',               
         borderRadius:10,
-        backgroundColor:'#FDD48A'
+        backgroundColor:'#FDD48A',
+        display:'flex',
+        justifyContent:'space-around',
+        flexDirection:'column',
+        alignItems:'center',
+        borderColor:'#00000041',
+        borderWidth:1
     },
     cardFullEarnings:{
         width:'30%',
-        height:'40%',        
-        textAlign:'center',
-        fontSize:20,
+        height:'40%',                     
+        backgroundColor:'#FDD48A',
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        justifyContent:'space-around',
         borderRadius:10,
-        backgroundColor:'#FDD48A'
+        borderColor:'#00000041',
+        borderWidth:1
     },
     boxNewStudentData:{
          width: '100%', 
