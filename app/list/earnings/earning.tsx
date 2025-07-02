@@ -2,7 +2,7 @@ import { StudentsContext } from "@/app/_layout";
 import { firebaseconn } from "@/firebaseconn/conn";
 import { doc, getDoc } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
-import { ActivityIndicator, Text, View } from "react-native"
+import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native"
 import styles from '../../../styles/option-styles'
 import { StudentData } from "@/constants/stateTypes";
 
@@ -20,6 +20,8 @@ const SeeEarningsByLevel =()=>{
     const context = useContext(StudentsContext);
     if (!context) throw new Error("StudentsContext no está disponible");       
     const {studentsType}=context
+    const monthsLettersFirst=['ENE','FEB','MAR']
+
    const findStudentsDataType=async()=>{
           setLoading(true)
           try {
@@ -111,7 +113,42 @@ const SeeEarningsByLevel =()=>{
                                 XX
                             </Text>
                         </View>
-                    </View>                    
+                    </View>
+                    <View style={{width:'100%',height:'35%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+                        <View style={{width:'25%',height:'100%'}}>
+                            <Text>Ver ingresos del mes</Text>
+                            <Text>Mes a elegir</Text>
+                        </View>
+                       <View style={{width:'65%',height:'100%',rowGap:5}}>
+                        <View style={{width:'100%',height:'30%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
+                            {monthsLettersFirst.map((e,i)=>
+                                <TouchableOpacity 
+                                    style={{width:45,height:45,borderWidth:1,borderColor:'#000000',borderRadius:5,display:'flex',justifyContent:'center',alignItems:'center'}}
+                                    key={i} >
+                                        <Text style={{width:'auto',height:'auto'}}>{e}</Text>
+                                    </TouchableOpacity>
+                            )}
+                        </View>
+                         <View style={{width:'100%',height:'30%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
+                            {monthsLettersFirst.map((e,i)=>
+                                <TouchableOpacity 
+                                    style={{width:45,height:45,borderWidth:1,borderColor:'#000000',borderRadius:5,display:'flex',justifyContent:'center',alignItems:'center'}}
+                                    key={i} >
+                                        <Text style={{width:'auto',height:'auto'}}>{e}</Text>
+                                    </TouchableOpacity>
+                            )}
+                        </View>
+                         <View style={{width:'100%',height:'30%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
+                            {monthsLettersFirst.map((e,i)=>
+                                <TouchableOpacity 
+                                    style={{width:45,height:45,borderWidth:1,borderColor:'#000000',borderRadius:5,display:'flex',justifyContent:'center',alignItems:'center'}}
+                                    key={i} >
+                                        <Text style={{width:'auto',height:'auto'}}>{e}</Text>
+                                    </TouchableOpacity>
+                            )}
+                        </View>
+                       </View>
+                    </View>
             </View>
             }
             
