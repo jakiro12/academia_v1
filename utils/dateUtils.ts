@@ -6,3 +6,5 @@ export const shortFormatDate = new Intl.DateTimeFormat('es-ES', {
 
 export  const currentDay = new Intl.DateTimeFormat('es-ES', { weekday: 'long' }).format(new Date());
 
+export  const currentMonth = new Intl.DateTimeFormat('es-ES', { month: '2-digit' }).format(new Date());
+

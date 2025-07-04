@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native"
 import styles from '../../../styles/option-styles'
 import { StudentData } from "@/constants/stateTypes";
+import { currentMonth } from "@/utils/dateUtils";
 
 type Payment = {
     fecha:string,
@@ -16,7 +17,7 @@ const SeeEarningsByLevel =()=>{
     const [loading,setLoading]=useState<boolean>(false)
     const [payments,setPayments]=useState<Payment[]>([])
     const [studentsCount,setStudentsCount]=useState<number | null>(null)
-
+    const [monthSelected,setMonthSelected]=useState<string>(currentMonth)
     const context = useContext(StudentsContext);
     if (!context) throw new Error("StudentsContext no está disponible");       
     const {studentsType}=context    
@@ -63,12 +64,19 @@ const SeeEarningsByLevel =()=>{
         const renderMonthRow = (start: number, end: number) => (
     <View style={styles.boxEachMonthBtns}>
         {allMonths.slice(start, end).map((e, i) => (
-            <TouchableOpacity key={i} style={styles.monthsBtn}>
+            <TouchableOpacity 
+                key={i} 
+                style={[styles.monthsBtn,{opacity: String((allMonths.findIndex((month)=> month === e) + 1)).padStart(2,'0') === monthSelected ? 1 : 0.5}]}
+                onPress={()=>setMonthSelected(String((allMonths.findIndex((month)=> month === e) + 1)).padStart(2,'0'))}
+                >
                 <Text style={{ width: 'auto', height: 'auto' }}>{e}</Text>
             </TouchableOpacity>
         ))}
     </View>
 );
+useEffect(()=>{
+    console.log(monthSelected)
+},[monthSelected])
     return(
        <View style={styles.container}>
             <View style={styles.infoCardStudent}>
