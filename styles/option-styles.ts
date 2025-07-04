@@ -38,6 +38,12 @@ interface OptionScreen{
     btnRejectAction:ViewStyle
     textBtnActions:TextStyle
     textNewStudentData:TextStyle
+    studentsSizeData:ViewStyle
+    boxStudentsSizeData:ViewStyle
+    monthsBtn:ViewStyle
+    boxEachMonthBtns:ViewStyle
+    containerMonthsBox:ViewStyle
+    displayMonthsAmount:ViewStyle
 }
 const { width } = Dimensions.get("window");
 const optionStyles :  OptionScreen = StyleSheet.create({
@@ -256,7 +262,7 @@ const optionStyles :  OptionScreen = StyleSheet.create({
     },
     boxAboutAllEarnings:{
         width:'100%',
-        height:'30%',
+        height:'25%',
         display:'flex',
         flexDirection:'column',
         alignItems:'center',
@@ -351,6 +357,53 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         width:'auto',
         height:'auto',
         fontSize:18,
+    },
+    studentsSizeData:{
+        width:'100%',
+        height:'20%',
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-around'
+    },
+    boxStudentsSizeData:{
+        width:'auto',
+        height:'auto',
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        justifyContent:'space-between',
+        rowGap:10
+    },
+    monthsBtn:{
+        width:45,
+        height:45,
+        borderRadius:5,
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#FDD48A',
+    },
+    boxEachMonthBtns:{
+        width:'100%',
+        height:'30%',
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between'
+    },
+    containerMonthsBox:{
+        width:'65%',
+        height:'100%',
+        rowGap:5
+    },
+    displayMonthsAmount:{
+        width:'100%',
+        height:'38%',
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',        
     }
 })
 

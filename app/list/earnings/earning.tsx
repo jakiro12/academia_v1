@@ -19,9 +19,8 @@ const SeeEarningsByLevel =()=>{
 
     const context = useContext(StudentsContext);
     if (!context) throw new Error("StudentsContext no está disponible");       
-    const {studentsType}=context
-    const monthsLettersFirst=['ENE','FEB','MAR']
-
+    const {studentsType}=context    
+    const allMonths : Array<string> = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC']
    const findStudentsDataType=async()=>{
           setLoading(true)
           try {
@@ -61,6 +60,15 @@ const SeeEarningsByLevel =()=>{
                 return total;
             }, 0);
         }
+        const renderMonthRow = (start: number, end: number) => (
+    <View style={styles.boxEachMonthBtns}>
+        {allMonths.slice(start, end).map((e, i) => (
+            <TouchableOpacity key={i} style={styles.monthsBtn}>
+                <Text style={{ width: 'auto', height: 'auto' }}>{e}</Text>
+            </TouchableOpacity>
+        ))}
+    </View>
+);
     return(
        <View style={styles.container}>
             <View style={styles.infoCardStudent}>
@@ -70,7 +78,7 @@ const SeeEarningsByLevel =()=>{
             {
                 loading ? <ActivityIndicator size={24} color="#ff0000"/>
                 :
-                <View style={{width:'100%',height:'70%',display:'flex',justifyContent:'space-between',alignItems:'flex-start',flexDirection:'column'}}>
+                <View style={{width:'100%',height:'90%',display:'flex',justifyContent:'space-between',alignItems:'flex-start',flexDirection:'column'}}>
                     <View style={styles.boxAboutAllEarnings}>
                           <View style={styles.boxAboutBothEarnings}>
                                 <View style={styles.cardAmountEarnings}>
@@ -100,12 +108,12 @@ const SeeEarningsByLevel =()=>{
                           </View>
                     </View>
                     
-                    <View style={{width:'100%',height:'20%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
-                        <View style={{width:'auto',height:'auto',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'space-between',rowGap:10}}>
+                    <View style={styles.studentsSizeData}>
+                        <View style={styles.boxStudentsSizeData}>
                             <Text>Alumnos totales</Text>
                             <Text>{studentsCount}</Text>
                         </View>
-                        <View style={{width:'auto',height:'auto',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'space-between',rowGap:10}}>
+                        <View style={styles.boxStudentsSizeData}>
                             <Text>
                                 Horas impartidas
                             </Text>
@@ -114,44 +122,19 @@ const SeeEarningsByLevel =()=>{
                             </Text>
                         </View>
                     </View>
-                    <View style={{width:'100%',height:'35%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+                    <View style={styles.displayMonthsAmount}>
                         <View style={{width:'25%',height:'100%'}}>
-                            <Text>Ver ingresos del mes</Text>
-                            <Text>Mes a elegir</Text>
+                            <Text>Ingresos generados</Text>
+                            <Text>Monto</Text>
                         </View>
-                       <View style={{width:'65%',height:'100%',rowGap:5}}>
-                        <View style={{width:'100%',height:'30%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
-                            {monthsLettersFirst.map((e,i)=>
-                                <TouchableOpacity 
-                                    style={{width:45,height:45,borderWidth:1,borderColor:'#000000',borderRadius:5,display:'flex',justifyContent:'center',alignItems:'center'}}
-                                    key={i} >
-                                        <Text style={{width:'auto',height:'auto'}}>{e}</Text>
-                                    </TouchableOpacity>
-                            )}
-                        </View>
-                         <View style={{width:'100%',height:'30%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
-                            {monthsLettersFirst.map((e,i)=>
-                                <TouchableOpacity 
-                                    style={{width:45,height:45,borderWidth:1,borderColor:'#000000',borderRadius:5,display:'flex',justifyContent:'center',alignItems:'center'}}
-                                    key={i} >
-                                        <Text style={{width:'auto',height:'auto'}}>{e}</Text>
-                                    </TouchableOpacity>
-                            )}
-                        </View>
-                         <View style={{width:'100%',height:'30%',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
-                            {monthsLettersFirst.map((e,i)=>
-                                <TouchableOpacity 
-                                    style={{width:45,height:45,borderWidth:1,borderColor:'#000000',borderRadius:5,display:'flex',justifyContent:'center',alignItems:'center'}}
-                                    key={i} >
-                                        <Text style={{width:'auto',height:'auto'}}>{e}</Text>
-                                    </TouchableOpacity>
-                            )}
-                        </View>
+                       <View style={styles.containerMonthsBox}>
+                            {renderMonthRow(0,4)}
+                            {renderMonthRow(4,8)}
+                            {renderMonthRow(8,12)}
                        </View>
                     </View>
             </View>
-            }
-            
+            }            
         </View>
         </View>
     )
