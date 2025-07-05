@@ -48,18 +48,18 @@ const SeeEarningsByLevel =()=>{
         const handleDebts = () =>{
              return payments.reduce((total, pago) => {
                 if (pago.tipo === "deuda") {
-                return total + parseInt(pago.valor, 10); // o Number(pago.valor)
+                return total + parseInt(pago.valor, 10) 
                 }
-                return total;
-            }, 0);
+                return total
+            }, 0)
         }
         const handleEarnings=()=>{
              return payments.reduce((total, pago) => {
                 if (pago.tipo !== "deuda") {
-                return total + parseInt(pago.valor, 10); // o Number(pago.valor)
+                return total + parseInt(pago.valor, 10)
                 }
-                return total;
-            }, 0);
+                return total
+            }, 0)
         }
         const renderMonthRow = (start: number, end: number) => (
     <View style={styles.boxEachMonthBtns}>
@@ -74,9 +74,17 @@ const SeeEarningsByLevel =()=>{
         ))}
     </View>
 );
-useEffect(()=>{
-    console.log(monthSelected)
-},[monthSelected])
+
+const handleMonthEarnings = () => {
+  return payments.reduce((total, pago) => {
+    const mesPago = pago.fecha.slice(3, 5) 
+    if (pago.tipo !== "deuda" && mesPago === monthSelected) {
+      return total + parseInt(pago.valor, 10)
+    }
+    return total
+  }, 0)
+}
+
     return(
        <View style={styles.container}>
             <View style={styles.infoCardStudent}>
@@ -131,9 +139,9 @@ useEffect(()=>{
                         </View>
                     </View>
                     <View style={styles.displayMonthsAmount}>
-                        <View style={{width:'25%',height:'100%'}}>
-                            <Text>Ingresos generados</Text>
-                            <Text>Monto</Text>
+                        <View style={{width:'25%',height:'100%',display:'flex',flexDirection:'column',justifyContent:'flex-start',alignItems:'center',rowGap:20}}>
+                            <Text style={{fontSize:16,width:'100%',height:'auto',textAlign:'center'}}>Ingresos:</Text>
+                            <Text style={{fontSize:18,fontWeight:'black',height:'auto',width:'100%',textAlign:'center'}}>{handleMonthEarnings()}</Text>
                         </View>
                        <View style={styles.containerMonthsBox}>
                             {renderMonthRow(0,4)}
