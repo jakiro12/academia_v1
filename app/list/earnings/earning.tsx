@@ -18,6 +18,8 @@ const SeeEarningsByLevel =()=>{
     const [payments,setPayments]=useState<Payment[]>([])
     const [studentsCount,setStudentsCount]=useState<number | null>(null)
     const [monthSelected,setMonthSelected]=useState<string>(currentMonth)
+    const [allHours,setAllHours]=useState<string[]>([])
+    const [numberOfClasses,setNumberOfClasses]=useState<number[]>([])
     const context = useContext(StudentsContext);
     if (!context) throw new Error("StudentsContext no está disponible");       
     const {studentsType}=context    
@@ -32,7 +34,11 @@ const SeeEarningsByLevel =()=>{
                   let res=docSnap.data().alumnos 
                   setStudentsCount(res.length)
                   let allPayments=res.flatMap((alumno : StudentData)=>alumno.pagos)
-                  setPayments(allPayments)                  
+                  let allHoursForEachStudent = res.flatMap((alumno:any)=>alumno.asistencia.carga_horaria)
+                  let allClassesforEachStudemt = res.flatMap((alumno:any)=>alumno.asistencia.historial.length)
+                  setPayments(allPayments)
+                  setAllHours(allHoursForEachStudent) 
+                  setNumberOfClasses(allClassesforEachStudemt)                 
               } else {
                 console.log("No se encontró el documento");
               }
@@ -75,16 +81,20 @@ const SeeEarningsByLevel =()=>{
     </View>
 );
 
-const handleMonthEarnings = () => {
-  return payments.reduce((total, pago) => {
-    const mesPago = pago.fecha.slice(3, 5) 
-    if (pago.tipo !== "deuda" && mesPago === monthSelected) {
-      return total + parseInt(pago.valor, 10)
+    const handleMonthEarnings = () => {
+    return payments.reduce((total, pago) => {
+        const mesPago = pago.fecha.slice(3, 5) 
+        if (pago.tipo !== "deuda" && mesPago === monthSelected) {
+        return total + parseInt(pago.valor, 10)
+        }
+        return total
+    }, 0)
+    }    
+    const handleAllHoursofClasses = () => {
+    return numberOfClasses?.reduce((total, item, index) => {
+        return total + item * Number(allHours[index])
+    }, 0)
     }
-    return total
-  }, 0)
-}
-
     return(
        <View style={styles.container}>
             <View style={styles.infoCardStudent}>
@@ -134,7 +144,7 @@ const handleMonthEarnings = () => {
                                 Horas impartidas
                             </Text>
                             <Text>
-                                XX
+                                {handleAllHoursofClasses()}
                             </Text>
                         </View>
                     </View>
