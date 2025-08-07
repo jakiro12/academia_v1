@@ -35,10 +35,10 @@ const SeeEarningsByLevel =()=>{
                   setStudentsCount(res.length)
                   let allPayments=res.flatMap((alumno : StudentData)=>alumno.pagos)
                   let allHoursForEachStudent = res.flatMap((alumno:any)=>alumno.asistencia.carga_horaria)
-                  let allClassesforEachStudemt = res.flatMap((alumno:any)=>alumno.asistencia.historial.length)
+                  let allClassesforEachStudent = res.flatMap((alumno:any)=>alumno.asistencia.historial.length)
                   setPayments(allPayments)
                   setAllHours(allHoursForEachStudent) 
-                  setNumberOfClasses(allClassesforEachStudemt)                 
+                  setNumberOfClasses(allClassesforEachStudent)   
               } else {
                 console.log("No se encontró el documento");
               }
@@ -90,10 +90,10 @@ const SeeEarningsByLevel =()=>{
         return total
     }, 0)
     }    
-    const handleAllHoursofClasses = () => {
-    return numberOfClasses?.reduce((total, item, index) => {
-        return total + item * Number(allHours[index])
-    }, 0)
+    const handleAllHoursofClasses = ():number => {
+      return numberOfClasses.reduce((suma, valor, i) => 
+      suma + valor * Number(allHours[i]), 0
+  );
     }
     return(
        <View style={styles.container}>
@@ -102,7 +102,7 @@ const SeeEarningsByLevel =()=>{
                 Rendimientos actuales
             </Text>
             {
-                loading ? <ActivityIndicator size={24} color="#ff0000"/>
+                loading ? <ActivityIndicator size={34} color="#264653"/>
                 :
                 <View style={{width:'100%',height:'90%',display:'flex',justifyContent:'space-between',alignItems:'flex-start',flexDirection:'column'}}>
                     <View style={styles.boxAboutAllEarnings}>
@@ -126,7 +126,7 @@ const SeeEarningsByLevel =()=>{
                           </View>  
                           <View style={styles.cardFullEarnings}>
                             <Text>
-                                Neto:
+                                Neto: 
                             </Text>
                             <Text style={{fontSize:18}}>
                                 {handleEarnings() - handleDebts()}
