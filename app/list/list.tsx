@@ -1,13 +1,11 @@
 import { Text, TouchableOpacity, View } from "react-native"
 import styles from '../../styles/list-styles'
 import { router } from "expo-router";
-import { StatusBar } from "react-native";
 
 
 const FullListStudents =()=>{        
     return(
         <View style={styles.container}>
-            <StatusBar backgroundColor="#FDD48A"/>            
             <TouchableOpacity style={styles.boxOptions}
                 onPress={()=>router.push('/list/option/option')}
             >

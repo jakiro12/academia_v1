@@ -15,7 +15,6 @@ export default function HomeScreen() {
   }
   return (    
       <View style={styles.container}>
-        <StatusBar backgroundColor="#FDD48A"/>            
         <TouchableOpacity style={styles.boxOptions}
             onPress={()=>handleRouteState('primario')}
         > 

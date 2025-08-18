@@ -18,7 +18,7 @@ const loginStyles : InitScreen = StyleSheet.create({
     },
     boxOptions:{
         width:'90%',
-        height:100,        
+        height:90,        
         borderRadius:15,
         marginTop:20,
         backgroundColor:'#F4A261',
@@ -31,7 +31,7 @@ const loginStyles : InitScreen = StyleSheet.create({
         width:'auto',
         height:'auto',
         fontSize:20,
-        fontWeight:'bold'
+        fontWeight:'500'
     }
 })
 export default loginStyles

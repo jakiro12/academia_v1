@@ -69,6 +69,7 @@ const InformationStudent = () => {
     return (
         <View style={styles.container}>
             <View style={styles.infoCardStudent}>
+                <View style={{width:'100%',height:'25%',padding:15,display:'flex',justifyContent:'space-between',flexDirection:'column',alignItems:'flex-start'}}>
                 <Text style={styles.fontInfo}>{studentInformation.nombre}</Text>
 
                 {studentInformation.telefonos.map((e, i) => (
@@ -77,13 +78,13 @@ const InformationStudent = () => {
                         style={styles.wspBtn}
                         onPress={() => handleExternalLinks(e.telefono)}
                     >
-                        <FontAwesome5 name="whatsapp" size={24} color="white" />
-                        <Text style={[styles.fontInfo,{color:'#ffffff'}]}>{e.nombre}</Text>
+                        <FontAwesome5 name="whatsapp" size={24} color="#FDD48A" />
+                        <Text style={styles.fontInfowsp}>{e.nombre}</Text>
                     </TouchableOpacity>
                 ))}
-
-                <Text style={styles.fontInfo}>{studentInformation.establecimiento}</Text>
-                <Text style={styles.schoolSubjects}>Materias:</Text>
+                </View>
+            <View style={{width:'100%',height:'70%',padding:10,backgroundColor:'#f4a36195',rowGap:10}}>
+                <Text style={styles.fontInfoSchool}>{studentInformation.establecimiento}</Text>                
                 <View style={styles.boxSubjectsContainer}>
                 {studentInformation.materias.map((materia, index) => (
                     <View key={index} style={styles.boxSubjects}>
@@ -92,11 +93,11 @@ const InformationStudent = () => {
                             style={styles.schoolSubjectsBoxes}                            
                             onPress={() => toggleExpand(index)}
                         >
-                            <Text>{materia.nombre}</Text>
+                            <Text style={{color:'#264653',fontWeight:'bold'}}>{materia.nombre}</Text>
                             <AntDesign
                                 name={expandedIndex === index ? "up" : "down"}
                                 size={20}
-                                color="black"
+                                color="#264653"
                             />
                         </TouchableOpacity>
 
@@ -115,14 +116,14 @@ const InformationStudent = () => {
                         onPress={()=>handleTurnsOption('see')}
                         activeOpacity={0.7}
                     >
-                        <Text style={{ fontSize: 18, color: '#ffffff' }}>Ver historial</Text>
+                        <Text style={{ fontSize: 18, color: '#FDD48A' }}>Ver historial</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         activeOpacity={0.7}
                         style={styles.btnTurns}
                         onPress={()=>handleTurnsOption('')}
                     >
-                    <Text style={{ fontSize: 18, color: '#ffffff' }}>Agregar turno</Text>
+                    <Text style={{ fontSize: 18, color: '#FDD48A' }}>Agregar turno</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.btsExtraActionsStudent}>
@@ -134,7 +135,7 @@ const InformationStudent = () => {
                         style={styles.btnTurns}
                         onPress={addAttended}
                     >
-                        <Text style={{ fontSize: 18, color: '#ffffff' }}>Asistencia +</Text>
+                        <Text style={{ fontSize: 18, color: '#FDD48A' }}>Asistencia +</Text>
                     </TouchableOpacity>
                 }
                 <TouchableOpacity
@@ -142,9 +143,10 @@ const InformationStudent = () => {
                     style={styles.btnTurns}
                     onPress={()=>router.push('/list/option/student/payments/payments')}
                 >
-                <Text style={{ fontSize: 18, color: '#ffffff' }}>Ver pagos</Text>
+                <Text style={{ fontSize: 18, color: '#FDD48A' }}>Ver pagos</Text>
                 </TouchableOpacity>
                 </View>
+            </View>
             </View>
             <ModalCustomActions 
                 checkDates={checkDates} 

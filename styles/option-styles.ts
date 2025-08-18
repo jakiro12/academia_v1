@@ -7,7 +7,6 @@ interface OptionScreen{
     infoCardStudent:ViewStyle
     wspBtn:ViewStyle
     fontInfo:TextStyle
-    schoolSubjects:TextStyle
     boxSubjects:ViewStyle
     schoolSubjectsBoxes:ViewStyle
     boxSubjectsContainer:ViewStyle
@@ -44,6 +43,8 @@ interface OptionScreen{
     boxEachMonthBtns:ViewStyle
     containerMonthsBox:ViewStyle
     displayMonthsAmount:ViewStyle
+    fontInfoSchool:TextStyle
+    fontInfowsp:TextStyle
 }
 const { width } = Dimensions.get("window");
 const optionStyles :  OptionScreen = StyleSheet.create({
@@ -80,11 +81,14 @@ const optionStyles :  OptionScreen = StyleSheet.create({
     infoCardStudent:{
         width:'90%',
         height:'80%',
-        backgroundColor:'#F4A261',
+        backgroundColor:'#FDD48A',
         borderRadius:15,
-        padding:10,
-        rowGap:10,
         boxShadow:'2px 2px 5px 0pxrgba(0, 0, 0, 0.34)',
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        justifyContent:'space-between',
+        overflow:'hidden'
     },
     wspBtn:{
         width:120,
@@ -101,29 +105,38 @@ const optionStyles :  OptionScreen = StyleSheet.create({
     fontInfo:{
         width:'auto',
         height:'auto',
-        fontWeight:400,
-        fontSize:18
+        fontWeight:600,
+        fontSize:26,
+        color:'#264653'
+    },
+    fontInfowsp:{
+        width:'auto',
+        height:'auto',
+        fontWeight:600,
+        fontSize:20,
+        color:'#FDD48A'
+    },
+    fontInfoSchool:{
+        width:'auto',
+        height:'auto',
+        fontWeight:600,
+        fontSize:20,
+        color:'#264653'
     },
     boxSubjectsContainer:{
         width:'100%',
         height:'auto',
         flexDirection:'column',
         display:'flex',
-        alignItems:'center'
+        alignItems:'center',                
+        overflow:'hidden',
+        borderRadius:7,
+        rowGap:3
     },
     boxSubjects:{
       width: '100%',
-      backgroundColor:'#f89b4e',
-      borderBottomColor:'#FAF3E0',
-      borderBottomWidth:1 
-    },
-    schoolSubjects:{
-        width:'auto',
-        height:'auto',
-        fontWeight:'bold',
-        fontSize:18,
-        textDecorationLine:'underline'
-    },
+      backgroundColor:'#f89b4e',      
+    },  
     schoolSubjectsBoxes:{
         height: 40,                               
         flexDirection: 'row',
