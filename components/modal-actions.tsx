@@ -92,35 +92,35 @@ const ModalCustomActions:React.FC<ModalTypes>=({checkDates,onCloseModal,modalTyp
                 </TouchableOpacity>     
                 </>
                 :
-                <>
-                <Text style={{width:'auto',fontSize:18,fontWeight:400,textDecorationLine:'underline'}}>
+                <View style={{width:'100%',height:'auto',display:'flex',justifyContent:'space-between',alignItems:'center',flexDirection:'column',rowGap:10}}>
+                <Text style={{width:'auto',fontSize:24,fontWeight:'bold',color:'#264653'}}>
                     Agendar turno
                 </Text>
                 <TextInput
                     placeholder="ej: XX/XX/XX"
                     onChangeText={(text) => handleDate('dia', text)}
-                    style={{width:200,height:40,borderRadius:5,backgroundColor:'#ffffff'}}
+                    style={{width:200,height:40,borderRadius:5,backgroundColor:'#ffffff',borderColor:'#f4a361ff',borderWidth:2}}
                 />
                 <TextInput
                     placeholder="ej: 10:00"
                     onChangeText={(text) => handleDate('hora', text)}
-                    style={{width:200,height:40,borderRadius:5,backgroundColor:'#ffffff'}}
+                    style={{width:200,height:40,borderRadius:5,backgroundColor:'#ffffff',borderColor:'#f4a361ff',borderWidth:2}}
                 />
-                <View style={{width:'80%',height:60,display:'flex',justifyContent:'space-around',alignItems:'center',flexDirection:'row'}}>
+                <View style={{width:200,height:'auto',display:'flex',justifyContent:'space-around',alignItems:'flex-start',flexDirection:'column',rowGap:15}}>
                 <TouchableOpacity
                     onPress={addStudentData}
-                    style={{width:'auto',height:'auto',backgroundColor:'#FAF3E0',padding:8,borderRadius:5}}
+                    style={{width:'auto',height:'auto',backgroundColor:'#A8D5BA',padding:10,borderRadius:5}}
                 >
-                    <Text style={{fontSize:16}}>Agregar</Text>
+                    <Text style={{fontSize:18,color:'#264653',fontWeight:500}}>Agregar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={{width:'auto',height:'auto',backgroundColor:'#FAF3E0',padding:8,borderRadius:5}}
+                    style={{width:'100%',height:'auto',backgroundColor:'#264653',padding:10,borderRadius:5}}
                     onPress={()=>onCloseModal(false)}
                 >
-                    <Text style={{fontSize:16}}>Cancelar</Text>
+                    <Text style={{fontSize:18,color:'#FAF3E0',fontWeight:500,textAlign:'center'}}>Cancelar</Text>
                 </TouchableOpacity>     
                 </View>
-                </>
+                </View>
             }
                 </View>
             </View>
