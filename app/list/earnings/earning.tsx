@@ -72,10 +72,10 @@ const SeeEarningsByLevel =()=>{
         {allMonths.slice(start, end).map((e, i) => (
             <TouchableOpacity 
                 key={i} 
-                style={[styles.monthsBtn,{opacity: String((allMonths.findIndex((month)=> month === e) + 1)).padStart(2,'0') === monthSelected ? 1 : 0.5}]}
+                style={[styles.monthsBtn,{backgroundColor: String((allMonths.findIndex((month)=> month === e) + 1)).padStart(2,'0') === monthSelected ? '#264653' : '#A8D5BA'}]}
                 onPress={()=>setMonthSelected(String((allMonths.findIndex((month)=> month === e) + 1)).padStart(2,'0'))}
                 >
-                <Text style={{ width: 'auto', height: 'auto' }}>{e}</Text>
+                <Text style={{ width: 'auto', height: 'auto',color: String((allMonths.findIndex((month)=> month === e) + 1)).padStart(2,'0') === monthSelected ? '#ffffff' : '#264653',fontWeight:'bold' }}>{e}</Text>
             </TouchableOpacity>
         ))}
     </View>
@@ -97,38 +97,38 @@ const SeeEarningsByLevel =()=>{
     }
     return(
        <View style={styles.container}>
-            <View style={styles.infoCardStudent}>
-            <Text style={{width:'auto',height:40,fontSize:20,marginInline:'auto'}}>
-                Rendimientos actuales
-            </Text>
+            <View style={[styles.infoCardStudent,{justifyContent:'space-around'}]}>
+           
             {
                 loading ? <ActivityIndicator size={34} color="#264653"/>
                 :
+                <>
+                <Text style={{width:'auto',height:40,fontSize:24,marginInline:'auto',color:'#264653',fontWeight:'bold'}}>
+                Rendimientos actuales
+                </Text>
                 <View style={{width:'100%',height:'90%',display:'flex',justifyContent:'space-between',alignItems:'flex-start',flexDirection:'column'}}>
-                    <View style={styles.boxAboutAllEarnings}>
-                          <View style={styles.boxAboutBothEarnings}>
+                    <View style={styles.boxAboutAllEarnings}>                          
                                 <View style={styles.cardAmountEarnings}>
-                                    <Text>
+                                    <Text style={{color:'#264653'}}>
                                         Ingresos:
                                     </Text>                                     
-                                    <Text style={{fontSize:18}}>
+                                    <Text style={{fontSize:18,color:'#ffffff'}}>
                                         {handleEarnings()}                                    
                                     </Text>
                                 </View>
                                 <View style={styles.cardAmountEarnings}>
-                                    <Text>
+                                    <Text style={{color:'#264653'}}>
                                         Deudas:
                                     </Text>
-                                    <Text style={{fontSize:18}}>
+                                    <Text style={{fontSize:18,color:'#ffffff'}}>
                                         {handleDebts()}
                                     </Text>
-                                </View>
-                          </View>  
-                          <View style={styles.cardFullEarnings}>
-                            <Text>
+                                </View>                          
+                          <View style={styles.cardAmountEarnings}>
+                            <Text style={{color:'#264653'}}>
                                 Neto: 
                             </Text>
-                            <Text style={{fontSize:18}}>
+                            <Text style={{fontSize:18,color:'#ffffff'}}>
                                 {handleEarnings() - handleDebts()}
                             </Text>
                           </View>
@@ -136,22 +136,22 @@ const SeeEarningsByLevel =()=>{
                     
                     <View style={styles.studentsSizeData}>
                         <View style={styles.boxStudentsSizeData}>
-                            <Text>Alumnos totales</Text>
-                            <Text>{studentsCount}</Text>
+                            <Text style={{color:'#264653'}}>Alumnos totales</Text>
+                            <Text style={{color:'#264653'}}>{studentsCount}</Text>
                         </View>
                         <View style={styles.boxStudentsSizeData}>
-                            <Text>
+                            <Text style={{color:'#264653'}}>
                                 Horas impartidas
                             </Text>
-                            <Text>
+                            <Text style={{color:'#264653'}}>
                                 {handleAllHoursofClasses()}
                             </Text>
                         </View>
                     </View>
                     <View style={styles.displayMonthsAmount}>
-                        <View style={{width:'25%',height:'100%',display:'flex',flexDirection:'column',justifyContent:'flex-start',alignItems:'center',rowGap:20}}>
-                            <Text style={{fontSize:16,width:'100%',height:'auto',textAlign:'center'}}>Ingresos:</Text>
-                            <Text style={{fontSize:18,fontWeight:'black',height:'auto',width:'100%',textAlign:'center'}}>{handleMonthEarnings()}</Text>
+                        <View style={{width:'75%',height:'auto',display:'flex',flexDirection:'column',justifyContent:'flex-start',alignItems:'flex-start',rowGap:10}}>
+                            <Text style={{fontSize:16,width:'100%',height:'auto',color:'#264653',fontWeight:'bold'}}>Ingresos:</Text>
+                            <Text style={{fontSize:18,fontWeight:'bold',height:'auto',width:'100%',color:'#264653'}}>{handleMonthEarnings()}</Text>
                         </View>
                        <View style={styles.containerMonthsBox}>
                             {renderMonthRow(0,4)}
@@ -160,6 +160,7 @@ const SeeEarningsByLevel =()=>{
                        </View>
                     </View>
             </View>
+            </>
             }            
         </View>
         </View>

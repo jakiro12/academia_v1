@@ -24,10 +24,8 @@ interface OptionScreen{
     cardHistoryPayments:ViewStyle
     cardHistoryPaymentsData:ViewStyle
     cardHistoryPaymentsBtn:ViewStyle
-    boxAboutBothEarnings:ViewStyle
     boxAboutAllEarnings:ViewStyle
     cardAmountEarnings:ViewStyle
-    cardFullEarnings:ViewStyle
     boxNewStudentData:ViewStyle
     inputNewStudentData:TextStyle
     newStudentDataDay:ViewStyle
@@ -263,48 +261,27 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         display:'flex',
         justifyContent:'center',
         alignItems:'center'
-    },
-    boxAboutBothEarnings:{
-        width:'auto',
-        height:'40%',
-        display:'flex',
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'space-between',
-        columnGap:20
-    },
+    },    
     boxAboutAllEarnings:{
         width:'100%',
         height:'25%',
         display:'flex',
-        flexDirection:'column',
+        flexDirection:'row',
         alignItems:'center',
-        justifyContent:'space-between'
+        justifyContent:'center',
+        columnGap:10
     },
     cardAmountEarnings:{
-        width:'30%',
-        height:'100%',               
+        width:'27%',
+        height:60,               
         borderRadius:10,
-        backgroundColor:'#FDD48A',
+        backgroundColor:'#F4A261',
         display:'flex',
         justifyContent:'space-around',
         flexDirection:'column',
-        alignItems:'center',
-        borderColor:'#00000041',
-        borderWidth:1
+        alignItems:'center',     
     },
-    cardFullEarnings:{
-        width:'30%',
-        height:'40%',                     
-        backgroundColor:'#FDD48A',
-        display:'flex',
-        flexDirection:'column',
-        alignItems:'center',
-        justifyContent:'space-around',
-        borderRadius:10,
-        borderColor:'#00000041',
-        borderWidth:1
-    },
+    
     boxNewStudentData:{
          width: '100%', 
          height: '12%', 
@@ -389,13 +366,13 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         rowGap:10
     },
     monthsBtn:{
-        width:45,
-        height:45,
+        width:55,
+        height:40,
         borderRadius:5,
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'#FDD48A',
+        backgroundColor:'#A8D5BA',
     },
     boxEachMonthBtns:{
         width:'100%',
@@ -406,17 +383,17 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         justifyContent:'space-between'
     },
     containerMonthsBox:{
-        width:'65%',
-        height:'100%',
-        rowGap:5
+        width:'75%',
+        height:'80%',
+        rowGap:5,                
     },
     displayMonthsAmount:{
         width:'100%',
-        height:'38%',
+        height:'45%',
         display:'flex',
-        flexDirection:'row',
+        flexDirection:'column',
         alignItems:'center',
-        justifyContent:'space-between',        
+        justifyContent:'space-between',           
     }
 })
 
