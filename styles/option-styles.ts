@@ -70,7 +70,7 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         height:100,        
         borderRadius:15,
         marginTop:20,
-        backgroundColor:'#F4A261',
+        backgroundColor:'#FDD48A',
         display:'flex',
         alignItems:'center',
         justifyContent:'center',

@@ -22,15 +22,16 @@ const listStyles :  ListScreen = StyleSheet.create({
         height:100,        
         borderRadius:15,
         marginTop:20,
-        backgroundColor:'#F4A261',
+        backgroundColor:'#FDD48A',
         display:'flex',
         alignItems:'center',
         justifyContent:'center',
         boxShadow:'2px 2px 5px 0pxrgba(0, 0, 0, 0.34)',        
     },
     boxText:{
-        fontSize:18,
-        fontWeight:500
+        fontSize:20,
+        fontWeight:500,
+        color:'#264653'
     }
 })
 
