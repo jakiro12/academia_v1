@@ -1,4 +1,4 @@
-import {  View , Text,StatusBar, TouchableOpacity } from 'react-native';
+import {  View , Text, TouchableOpacity } from 'react-native';
 import styles from '../styles/index-styles'
 import { router } from 'expo-router';
 import { useContext } from 'react';

@@ -57,7 +57,7 @@ const AddNewStudent = () => {
           fijo: newStudentData.fijo,
           historial: [],
           dias_fijo: [
-            { dia: "lunes", hora: "20:00" },
+            { dia: "", hora: "" },
           ],
         },
         materias: [
@@ -119,7 +119,7 @@ useEffect(() => {
   }, []);
   return (
     <View style={styles.container}>
-      <View style={[styles.infoCardStudent,{height:keyboardActive ? cardHeight : '80%',marginTop:keyboardActive ? 200 : 0}]}>
+      <View style={[styles.infoCardStudent,{height:keyboardActive ? cardHeight : '80%',marginTop:keyboardActive ? 200 : 0,justifyContent:'space-around'}]}>
         <View style={styles.boxNewStudentData}>
           <Text
             style={styles.textNewStudentData}
@@ -150,17 +150,17 @@ useEffect(() => {
           >Asistira en horario y dia fijo:</Text>
           <View style={styles.newStudentDataDay}>
             <TouchableOpacity 
-                style={[styles.newStudentDataFixedDay,{backgroundColor:newStudentData.fijo === true ? '#FDD48A' :'#fdd58a73'}]}
+                style={[styles.newStudentDataFixedDay,{backgroundColor:newStudentData.fijo === true ? '#264653' :'#A8D5BA'}]}
                 onPress={() => handleFijoChange(true)}>
                 <Text
-                    style={styles.textNewStudentData}                
+                    style={[styles.textNewStudentData,{color:newStudentData.fijo === true ? '#ffffff' :'#264653',width:'auto'}]}                
                 >Si</Text>
             </TouchableOpacity>
             <TouchableOpacity 
-                style={[styles.newStudentDataFixedDay,{backgroundColor:newStudentData.fijo === false ? '#FDD48A' :'#fdd58a73'}]}
+                style={[styles.newStudentDataFixedDay,{backgroundColor:newStudentData.fijo === false ? '#264653' :'#A8D5BA'}]}
                 onPress={() => handleFijoChange(false)}>
                 <Text
-                    style={styles.textNewStudentData}                
+                    style={[styles.textNewStudentData,{color:newStudentData.fijo === false ? '#ffffff' :'#264653',width:'auto'}]}                
                 >No</Text>
             </TouchableOpacity>
           </View>
@@ -186,14 +186,14 @@ useEffect(() => {
             style={styles.btnSubmitAction}
             onPress={handleSubmit}
           >
-            <Text style={styles.textBtnActions}>Enviar</Text>
+            <Text style={[styles.textBtnActions,{color:'#264653'}]}>Enviar</Text>
           </TouchableOpacity>
 }
           <TouchableOpacity
             style={styles.btnRejectAction}
             onPress={handleAbortNewStudent}
           >
-            <Text style={styles.textBtnActions}>Cancelar</Text>
+            <Text style={[styles.textBtnActions,{color:'#FAF3E0'}]}>Cancelar</Text>
           </TouchableOpacity>
         </View>
       </View>

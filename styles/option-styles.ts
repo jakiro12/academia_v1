@@ -63,7 +63,7 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         justifyContent:'flex-start',
         alignItems:'center',
         paddingTop:10, 
-        paddingBottom:10,        
+        paddingBottom:10,
     },
     boxOptions:{
         width:'90%',
@@ -200,8 +200,9 @@ const optionStyles :  OptionScreen = StyleSheet.create({
     textModayTodalDescription:{ 
         width:'auto',
         height:30,
-        fontSize:18,
-        fontWeight:500
+        fontSize:20,
+        fontWeight:500,
+        color:'#264653'
     },
     actionBtns:{
       width: 'auto',
@@ -241,10 +242,10 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         width:'80%',
         height:90,
         borderRadius:10,
-        marginRight:'auto',
         backgroundColor:'#FAF3E0',
         display:'flex',
-        flexDirection:'row'
+        flexDirection:'row',
+        marginRight:'10%'
     },
     cardHistoryPaymentsData:{
         width:'80%',
@@ -287,14 +288,14 @@ const optionStyles :  OptionScreen = StyleSheet.create({
          height: '12%', 
          display: 'flex', 
          flexDirection: 'column', 
-         alignItems: 'flex-start', 
+         alignItems: 'center', 
          justifyContent: 'space-between' 
     },
     inputNewStudentData:{
-         width: '100%', 
-         height: 40, 
-         borderBottomWidth: 1, 
-         borderBottomColor: '#000000' 
+         width: '90%', 
+         height: 40,          
+         backgroundColor:'#FAF3E0',
+         borderRadius:10
     },
     newStudentDataDay:{
         width:'100%',
@@ -310,7 +311,7 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         borderRadius:10,
         display:'flex',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',    
     },
     btnSendActionContainer:{ 
         width: '100%', 
@@ -344,9 +345,12 @@ const optionStyles :  OptionScreen = StyleSheet.create({
         fontSize: 20 
     },
     textNewStudentData:{
-        width:'auto',
+        width:'90%',
         height:'auto',
-        fontSize:18,
+        fontSize:20,
+        textAlign:'left',
+        color:'#264653',
+        fontWeight:500
     },
     studentsSizeData:{
         width:'100%',

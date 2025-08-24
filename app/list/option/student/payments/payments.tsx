@@ -1,4 +1,4 @@
-import { Modal, ScrollView, Text,TouchableOpacity,View } from "react-native"
+import {  ScrollView, Text,TouchableOpacity,View } from "react-native"
 import styles from '../../../../../styles/option-styles'
 import { StudentsContext } from "@/app/_layout";
 import { useContext, useEffect, useState } from "react";
@@ -41,12 +41,12 @@ const PaymentHistory=()=>{
     return(
         <View style={styles.container}>
             <View style={styles.infoCardStudent}>
-                <Text style={[styles.textModayTodalDescription,{marginInline:'auto'}]}>
+                <Text style={[styles.textModayTodalDescription,{marginInline:'auto',marginTop:10,fontSize:24}]}>
                     Pagos percibidos
                 </Text>
-                <Text style={styles.textModayTodalDescription}>Pagos rebicidos: {summaryAmounts()}$</Text>
-                <Text style={styles.textModayTodalDescription}>Debe: {debtAmounts()}$</Text>
-                <Text style={styles.textModayTodalDescription}>Neto: {summaryAmounts() - debtAmounts()}$</Text>
+                <Text style={[styles.textModayTodalDescription,{width:'80%',textAlign:'left'}]}>Pagos rebicidos: {summaryAmounts()}$</Text>
+                <Text style={[styles.textModayTodalDescription,{width:'80%',textAlign:'left'}]}>Debe: {debtAmounts()}$</Text>
+                <Text style={[styles.textModayTodalDescription,{width:'80%',textAlign:'left'}]}>Neto: {summaryAmounts() - debtAmounts()}$</Text>
                 <View style={styles.scrollHistoryPaymentsContainer}>
                     <ScrollView contentContainerStyle={styles.containerScroll} showsVerticalScrollIndicator={false}>             
                         {studentInformation.pagos.map((payment,index)=>(
@@ -55,9 +55,9 @@ const PaymentHistory=()=>{
                                 style={styles.cardHistoryPayments}
                                 >
                                 <View style={styles.cardHistoryPaymentsData}>
-                                    <Text>Tipo de pago: {payment.tipo}</Text>
-                                    <Text style={{color:payment.tipo === 'deuda' ? '#B71C1C' : '#4CAF50'}}>Valor: {payment.valor}</Text>
-                                    <Text>Fecha de pago: {payment.fecha}</Text>
+                                    <Text style={{fontSize:18}}>Tipo de pago: {payment.tipo}</Text>
+                                    <Text style={{color:payment.tipo === 'deuda' ? '#B71C1C' : '#4CAF50',fontSize:18}}>Valor: {payment.valor}</Text>
+                                    <Text style={{color:'#a7a7a7ff',fontSize:18}}>Fecha de pago: {payment.fecha}</Text>
                                 </View>
                                 {
                                     payment.tipo === 'deuda' ?
@@ -69,7 +69,13 @@ const PaymentHistory=()=>{
                                         <AntDesign name="checkcircle" size={30} color="#B71C1C" />
                                     </TouchableOpacity>
                                 </View>                                
-                                : null
+                                :<View style={styles.cardHistoryPaymentsBtn}>
+                                    <TouchableOpacity                                        
+                                        style={{width:30,height:30,borderRadius:30}}
+                                    >
+                                        <AntDesign name="checkcircle" size={30} color="#4CAF50" />
+                                    </TouchableOpacity>
+                                </View>
                                 }
                             </View>
                         ))}
