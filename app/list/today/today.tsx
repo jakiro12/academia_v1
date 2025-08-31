@@ -94,8 +94,8 @@ const StudentsToday=()=>{
                 style={styles.boxOptions} key={`fixed-${index}`}
                 onPress={()=>showStudentInformation(true,sortedFixedStudents[index])}
                 >
-              <Text style={{ fontWeight: 'bold', fontSize: 18 }}>{item.nombre}</Text>
-              <Text>{diaFijoDelDia ? diaFijoDelDia.hora : 'Sin hora'}</Text>
+              <Text style={{ fontWeight: 400, fontSize: 18,color:'#264653' }}>{item.nombre}</Text>
+              <Text style={{ fontWeight: 400, fontSize: 18,color:'#264653' }}>{diaFijoDelDia ? `${diaFijoDelDia.hora} hrs` : 'Sin hora'}</Text>
             </TouchableOpacity>
           );
         });

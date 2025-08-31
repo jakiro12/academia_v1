@@ -70,11 +70,11 @@ const PaymentHistory=()=>{
                                     </TouchableOpacity>
                                 </View>                                
                                 :<View style={styles.cardHistoryPaymentsBtn}>
-                                    <TouchableOpacity                                        
+                                    <View                                        
                                         style={{width:30,height:30,borderRadius:30}}
                                     >
                                         <AntDesign name="checkcircle" size={30} color="#4CAF50" />
-                                    </TouchableOpacity>
+                                    </View>
                                 </View>
                                 }
                             </View>

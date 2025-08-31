@@ -74,7 +74,7 @@ const ModalCustomActions:React.FC<ModalTypes>=({checkDates,onCloseModal,modalTyp
                 <View style={[styles.infoCardStudent,{alignItems:'center'}]}>
                 {modalType === 'see' ?
                 <>
-                <Text style={{width:'auto',fontSize:18,fontWeight:400,textDecorationLine:'underline'}}>
+                <Text style={{width:'auto',fontSize:22,fontWeight:500,color:'#264653'}}>
                     Historial de asistencias
                 </Text>
                 <ScrollView 
@@ -82,13 +82,13 @@ const ModalCustomActions:React.FC<ModalTypes>=({checkDates,onCloseModal,modalTyp
                     contentContainerStyle={{width:200,display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
                 {data.map((e,i)=><Text 
                                     key={i}
-                                    style={{fontSize:16}}>{e}</Text>)}
+                                    style={{fontSize:16,color:'#264653'}}>{e}</Text>)}
                 </ScrollView>
                 <TouchableOpacity
-                    style={{width:40,height:40,borderRadius:20,backgroundColor:'#FAF3E0',display:'flex',justifyContent:'center',alignItems:'center'}}
+                    style={{width:44,height:44,borderRadius:22,backgroundColor:'#264653',display:'flex',justifyContent:'center',alignItems:'center',marginBottom:10}}
                     onPress={()=>onCloseModal(false)}
                 >
-                    <Text style={{fontSize:18,fontWeight:'bold'}}>X</Text>
+                    <Text style={{fontSize:20,fontWeight:'bold',color:'#ffffff'}}>X</Text>
                 </TouchableOpacity>     
                 </>
                 :
